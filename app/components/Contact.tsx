@@ -1,10 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
+import { useRef, useState } from 'react';
 
 const contactMethods = [
   {
@@ -53,38 +49,22 @@ export default function Contact() {
   const cardsRef = useRef<(HTMLAnchorElement | null)[]>([]);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Simple fade in on load
-      gsap.from([contentRef.current, ...cardsRef.current], {
-        opacity: 0,
-        y: 20,
-        duration: 0.6,
-        stagger: 0.1,
-        ease: 'power2.out',
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
     <section
       ref={sectionRef}
       id="contact"
       className="py-16 px-6 apple-grid relative overflow-hidden"
     >
-
       <div className="max-w-4xl mx-auto relative z-10">
         <div ref={contentRef}>
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-center">
             Get In <span className="gradient-text">Touch</span>
           </h2>
-          <p className="text-xl text-gray-700 dark:text-gray-300 text-center mb-10 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-700 dark:text-gray-300 text-center mb-12 max-w-2xl mx-auto">
             I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
           </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {contactMethods.map((method, index) => (
               <a
                 key={method.type}

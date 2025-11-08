@@ -32,40 +32,52 @@ export default function Hero() {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
-      // Text animations
+      // Cinematic text reveal
       tl.from(titleRef.current, {
-        y: 80,
+        scale: 0.5,
         opacity: 0,
-        duration: 1.2,
-        ease: 'expo.out',
+        rotationY: -30,
+        duration: 1.5,
+        ease: 'back.out(1.7)',
       })
         .from(
           subtitleRef.current,
           {
-            y: 40,
+            x: -100,
             opacity: 0,
-            duration: 1,
+            duration: 1.2,
+            ease: 'power4.out',
           },
-          '-=0.8'
+          '-=1'
         )
         .from(
           ctaRef.current,
           {
-            y: 30,
+            scale: 0,
             opacity: 0,
-            duration: 0.9,
+            rotation: -10,
+            duration: 1,
+            ease: 'elastic.out(1, 0.5)',
           },
           '-=0.6'
         );
 
-      // Code window animation with Apple-style entry
-      gsap.from(codeWindowRef.current, {
-        scale: 0.9,
-        opacity: 0,
-        duration: 1,
-        ease: 'back.out(1.4)',
-        delay: 0.3,
-      });
+      // Code window animation - starts from intro zoom position
+      gsap.fromTo(codeWindowRef.current, 
+        {
+          scale: 0.45,
+          opacity: 1,
+          y: 50,
+        },
+        {
+          scale: 1,
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          ease: 'power3.out',
+          delay: 0.2,
+        }
+      );
 
       // Animate code lines with typing effect
       codeLineRefs.current.forEach((line, index) => {
