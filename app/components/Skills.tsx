@@ -43,10 +43,10 @@ const skillCategories = [
     skills: [
       { name: 'React', icon: SiReact, color: '#61DAFB' },
       { name: 'Next.js', icon: SiNextdotjs, color: '#ffffff' },
-      { name: 'Vue.js', icon: SiVuedotjs, color: '#4FC08D' },
       { name: 'HTML5', icon: SiHtml5, color: '#E34F26' },
       { name: 'Tailwind CSS', icon: SiTailwindcss, color: '#06B6D4' },
-      { name: 'Bootstrap', icon: SiBootstrap, color: '#7952B3' },
+      { name: 'CSS3', icon: SiCss3, color: '#1572B6' },
+   
     ],
   },
   {
@@ -70,9 +70,7 @@ const skillCategories = [
       { name: 'React Native', icon: SiReact, color: '#61DAFB' },
       { name: 'JavaScript', icon: SiJavascript, color: '#F7DF1E' },
       { name: 'TypeScript', icon: SiTypescript, color: '#3178C6' },
-      { name: 'Flutter', icon: SiReact, color: '#02569B' },
-      { name: 'Android', icon: SiReact, color: '#3DDC84' },
-      { name: 'iOS', icon: SiFigma, color: '#147EFB' },
+      { name: 'Figma', icon: SiFigma, color: '#147EFB' },
     ],
   },
   {
@@ -85,7 +83,7 @@ const skillCategories = [
       { name: 'MySQL', icon: SiMysql, color: '#4479A1' },
       { name: 'Redis', icon: SiRedis, color: '#DC382D' },
       { name: 'Oracle', icon: SiOracle, color: '#F80000' },
-      { name: 'Firebase', icon: SiFirebase, color: '#FFCA28' },
+      { name: 'FireStore', icon: SiFirebase, color: '#FFCA28' },
     ],
   },
   {
@@ -134,11 +132,11 @@ export default function Skills() {
               ref={(el) => {
                 cardsRef.current[index] = el;
               }}
-              className={`group bg-white/60 dark:bg-[#1e1e1e] backdrop-blur-sm p-6 rounded-[28px] hover:scale-[1.02] transition-all duration-300 border border-gray-200/60 dark:border-white/10 hover:border-[#ff7b6c]/30 dark:hover:border-[#ff7b6c]/40 shadow-sm hover:shadow-lg hover:shadow-[#ff7b6c]/5`}
+              className={`group bg-white/40 dark:bg-[#1e1e1e] backdrop-blur-md p-6 rounded-[28px] hover:scale-[1.02] transition-all duration-300 border border-gray-200/40 dark:border-white/10 hover:border-[#ff7b6c]/30 dark:hover:border-[#ff7b6c]/40 shadow-sm hover:shadow-lg hover:shadow-[#ff7b6c]/5`}
             >
               <div className="relative z-10">
                 {/* Category Header with improved styling */}
-                <div className="flex items-center gap-3 mb-6 pb-4 border-b border-white/10">
+                <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-200/30 dark:border-white/10">
                   <div className={`w-1 h-16 rounded-full bg-linear-to-b ${category.color} shadow-lg`} />
                   <h3 className={`text-2xl font-bold bg-linear-to-r ${category.color} bg-clip-text text-transparent tracking-tight`}>
                     {category.title}

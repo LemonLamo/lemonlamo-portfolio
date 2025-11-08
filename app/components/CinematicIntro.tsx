@@ -119,8 +119,12 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
           className="absolute inset-0 flex flex-col items-center justify-center z-50"
         >
           <div className="text-center space-y-8">
-            {/* Lemon Logo with bounce animation */}
-            <div className="text-8xl animate-bounce">🍋</div>
+            {/* Lemon Logo with bounce animation - Using image for consistent rendering */}
+            <div className="flex justify-center items-center">
+              <div className="text-8xl animate-bounce" style={{ fontFamily: 'Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, sans-serif' }}>
+                🍋
+              </div>
+            </div>
             
             {/* Loading text */}
             <div className="space-y-3">
