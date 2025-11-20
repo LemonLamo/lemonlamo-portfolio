@@ -7,8 +7,19 @@
   --purple: #9c7fe6;
   --accent: #ff6b5a;
   --accent-dark: #ff5a48;
-  --card-bg: #ffffff;
-  --card-border: rgba(255, 107, 90, 0.2);
+  
+  /* Text colors */
+  --text-primary: #1a1a1a;
+  --text-secondary: #4b5563;
+  --text-tertiary: #6b7280;
+  
+  /* Card colors */
+  --card-bg: rgba(255, 255, 255, 0.7);
+  --card-border: rgba(107, 114, 128, 0.2);
+  
+  /* Navbar */
+  --navbar-bg: rgba(255, 255, 255, 0.85);
+  --navbar-border: rgba(229, 231, 235, 0.8);
 }
 
 .dark {
@@ -18,8 +29,19 @@
   --purple: #b694ff;
   --accent: #ff8a78;
   --accent-dark: #ff7b6c;
-  --card-bg: rgba(30, 30, 30, 0.8);
-  --card-border: rgba(255, 123, 108, 0.15);
+  
+  /* Text colors */
+  --text-primary: #f5f5f7;
+  --text-secondary: #d1d5db;
+  --text-tertiary: #9ca3af;
+  
+  /* Card colors */
+  --card-bg: rgba(30, 30, 30, 0.6);
+  --card-border: rgba(255, 255, 255, 0.1);
+  
+  /* Navbar */
+  --navbar-bg: rgba(20, 20, 20, 0.85);
+  --navbar-border: rgba(255, 255, 255, 0.05);
 }
 
 @theme inline {

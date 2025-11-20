@@ -31,20 +31,24 @@ export default function Navbar() {
   ];
 
   return (
-    <nav
+    <nav 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-white/70 dark:bg-[#1a1a1a]/90 backdrop-blur-xl shadow-sm border-b border-gray-200/50 dark:border-white/10'
-          : 'bg-transparent'
+        isScrolled 
+          ? 'backdrop-blur-md border-b' 
+          : 'border-b border-transparent'
       }`}
+      style={{
+        backgroundColor: isScrolled ? 'var(--navbar-bg)' : 'transparent',
+        borderBottomColor: isScrolled ? 'var(--navbar-border)' : 'transparent',
+      }}
     >
       <div className="max-w-7xl mx-auto px-6 py-4 relative">
         <div className="flex items-center justify-between">
           <button
             onClick={() => scrollToSection('home')}
-            className="flex items-center gap-2 text-2xl font-bold gradient-text transition-transform group"
+            className="flex items-center gap-2 text-2xl font-bold gradient-text group"
           >
-            <span className="text-3xl group-hover:scale-110 transition-transform">🍋</span>
+            <span className="text-3xl">🍋</span>
           </button>
 
           {/* Desktop Menu */}
@@ -53,7 +57,8 @@ export default function Navbar() {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="text-gray-900 dark:text-gray-300 hover:text-[#ff6b5a] dark:hover:text-[#ff8a78] font-medium transition-colors"
+                className="font-medium transition-colors hover:text-[#ff6b5a] dark:hover:text-[#ff8a78]"
+                style={{ color: 'var(--text-secondary)' }}
               >
                 {item.name}
               </button>
@@ -64,7 +69,8 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <div className="md:hidden ml-auto">
             <button
-              className="p-2 text-gray-900 dark:text-gray-300"
+              className="p-2"
+              style={{ color: 'var(--text-secondary)' }}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Toggle menu"
             >
@@ -96,19 +102,30 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden absolute right-4 top-full mt-2 w-64 bg-white/95 dark:bg-[#1a1a1a]/98 backdrop-blur-xl rounded-3xl p-6 shadow-2xl border border-gray-200/70 dark:border-white/10 animate-slideDown">
+          <div className="md:hidden absolute right-4 top-full mt-2 w-64 backdrop-blur-xl rounded-3xl p-6 shadow-2xl animate-slideDown"
+            style={{
+              backgroundColor: 'var(--navbar-bg)',
+              borderColor: 'var(--navbar-border)',
+              borderWidth: '1px',
+            }}
+          >
             <div className="flex flex-col space-y-3">
               {navItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className="text-left text-gray-900 dark:text-gray-200 hover:text-[#ff6b5a] dark:hover:text-[#ff8a78] font-semibold transition-colors py-3 px-4 rounded-xl hover:bg-gray-50 dark:hover:bg-white/5"
+                  className="text-left font-semibold transition-colors py-3 px-4 rounded-xl hover:text-[#ff6b5a] dark:hover:text-[#ff8a78] hover:bg-gray-100/50 dark:hover:bg-white/5"
+                  style={{ color: 'var(--text-secondary)' }}
                 >
                   {item.name}
                 </button>
               ))}
-              <div className="pt-3 mt-2 border-t border-gray-200 dark:border-white/10 flex items-center justify-between px-4 py-2">
-                <span className="text-sm font-medium text-gray-900 dark:text-gray-200">Theme</span>
+              <div className="pt-3 mt-2 flex items-center justify-between px-4 py-2"
+                style={{
+                  borderTop: '1px solid var(--navbar-border)',
+                }}
+              >
+                <span className="text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>Theme</span>
                 <ThemeToggle />
               </div>
             </div>

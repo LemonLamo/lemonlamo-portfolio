@@ -104,10 +104,14 @@ export default function Projects() {
                 </div>
 
                 <div className="p-6">
-                  <h3 className="text-2xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-[#ff7b6c] transition-all duration-500">
+                  <h3 className="text-2xl font-bold mb-3 group-hover:text-[#ff7b6c] transition-all duration-500"
+                    style={{ color: 'var(--text-primary)' }}
+                  >
                     {project.title}
                   </h3>
-                  <p className="text-gray-900 dark:text-gray-300 mb-4 leading-relaxed text-sm">
+                  <p className="mb-4 leading-relaxed text-sm"
+                    style={{ color: 'var(--text-tertiary)' }}
+                  >
                     {project.description}
                   </p>
                   <div className="flex flex-wrap gap-2 mb-4">

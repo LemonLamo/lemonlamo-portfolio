@@ -117,10 +117,13 @@ export default function Skills() {
           <h2
             ref={titleRef}
             className="text-4xl md:text-5xl font-bold mb-4"
+            style={{ color: 'var(--text-primary)' }}
           >
             Technical <span className="gradient-text">Skills</span>
           </h2>
-          <p className="text-gray-900 dark:text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className="text-lg max-w-2xl mx-auto"
+            style={{ color: 'var(--text-tertiary)' }}
+          >
             Technologies I use to build exceptional digital experiences
           </p>
         </div>
@@ -132,11 +135,17 @@ export default function Skills() {
               ref={(el) => {
                 cardsRef.current[index] = el;
               }}
-              className={`group bg-white/40 dark:bg-[#1e1e1e] backdrop-blur-md p-6 rounded-[28px] hover:scale-[1.02] transition-all duration-300 border border-gray-200/40 dark:border-white/10 hover:border-[#ff7b6c]/30 dark:hover:border-[#ff7b6c]/40 shadow-sm hover:shadow-lg hover:shadow-[#ff7b6c]/5`}
+              className="group backdrop-blur-md p-6 rounded-[28px] hover:scale-[1.02] transition-all duration-300 hover:shadow-lg hover:shadow-[#ff7b6c]/10"
+              style={{
+                backgroundColor: 'var(--card-bg)',
+                borderWidth: '1px',
+                borderStyle: 'solid',
+                borderColor: 'var(--card-border)',
+              }}
             >
               <div className="relative z-10">
                 {/* Category Header with improved styling */}
-                <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-200/30 dark:border-white/10">
+                <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-300/40 dark:border-white/10">
                   <div className={`w-1 h-16 rounded-full bg-linear-to-b ${category.color} shadow-lg`} />
                   <h3 className={`text-2xl font-bold bg-linear-to-r ${category.color} bg-clip-text text-transparent tracking-tight`}>
                     {category.title}
@@ -151,7 +160,8 @@ export default function Skills() {
                     return (
                       <li
                         key={skill.name}
-                        className="skill-item flex items-center gap-3 text-gray-900 dark:text-gray-200 cursor-pointer group/item hover:bg-linear-to-r hover:from-[#ff7b6c]/10 hover:to-[#a78bfa]/10 p-2.5 rounded-xl transition-all duration-300"
+                        className="skill-item flex items-center gap-3 cursor-pointer group/item hover:bg-linear-to-r hover:from-[#ff7b6c]/10 hover:to-[#a78bfa]/10 p-2.5 rounded-xl transition-all duration-300"
+                        style={{ color: 'var(--text-secondary)' }}
                       >
                         <div className="relative shrink-0">
                           <div
@@ -163,7 +173,7 @@ export default function Skills() {
                           >
                             <Icon
                               className={`w-5 h-5 transition-all duration-300 ${
-                                isNextOrExpress ? 'text-gray-900 dark:text-white' : ''
+                                isNextOrExpress ? 'text-gray-700 dark:text-white' : ''
                               }`}
                               style={{
                                 color: isNextOrExpress ? undefined : skill.color,
@@ -185,7 +195,9 @@ export default function Skills() {
 
         {/* Additional Skills Note */}
         <div className="text-center mt-12">
-          <p className="text-gray-900 dark:text-gray-400 italic">
+          <p className="italic"
+            style={{ color: 'var(--text-tertiary)' }}
+          >
             + Many more tools and technologies in my toolkit...
           </p>
         </div>

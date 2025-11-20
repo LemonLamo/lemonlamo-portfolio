@@ -183,7 +183,8 @@ export default function Hero() {
 
             <p
               ref={subtitleRef}
-              className="text-xl md:text-2xl text-gray-900 dark:text-gray-300 leading-relaxed"
+              className="text-xl md:text-2xl leading-relaxed"
+              style={{ color: 'var(--text-tertiary)' }}
             >
               Software Engineering Student at{' '}
               <span className="font-semibold text-[#ff7b6c]">USTHB</span>, crafting elegant solutions with modern technologies.
