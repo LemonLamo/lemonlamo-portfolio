@@ -9,17 +9,28 @@
   --accent-dark: #ff5a48;
   
   /* Text colors */
-  --text-primary: #1a1a1a;
-  --text-secondary: #4b5563;
-  --text-tertiary: #6b7280;
+  --text-primary: #0a0a0a;
+  --text-secondary: #2d3748;
+  --text-tertiary: #374151;
   
   /* Card colors */
   --card-bg: rgba(255, 255, 255, 0.7);
-  --card-border: rgba(107, 114, 128, 0.2);
+  --card-border: rgba(107, 114, 128, 0.4);
   
   /* Navbar */
   --navbar-bg: rgba(255, 255, 255, 0.85);
   --navbar-border: rgba(229, 231, 235, 0.8);
+  
+  /* Skill icon colors */
+  --icon-nextjs-express: #1a1a1a;
+  
+  /* Hero section */
+  --hero-button-secondary: rgba(74, 74, 74, 0.15);
+  --hero-button-secondary-hover: rgba(74, 74, 74, 0.25);
+  --hero-button-secondary-text: #1a1a1a;
+  --code-editor-bg: rgba(50, 50, 50, 0.85);
+  --code-editor-header-bg: rgba(0, 0, 0, 0.2);
+  --code-editor-status-bg: rgba(0, 0, 0, 0.2);
 }
 
 .dark {
@@ -42,6 +53,17 @@
   /* Navbar */
   --navbar-bg: rgba(20, 20, 20, 0.85);
   --navbar-border: rgba(255, 255, 255, 0.05);
+  
+  /* Skill icon colors */
+  --icon-nextjs-express: #ffffff;
+  
+  /* Hero section */
+  --hero-button-secondary: rgba(255, 255, 255, 0.1);
+  --hero-button-secondary-hover: rgba(255, 255, 255, 0.15);
+  --hero-button-secondary-text: #ffffff;
+  --code-editor-bg: rgba(20, 20, 20, 0.95);
+  --code-editor-header-bg: rgba(0, 0, 0, 0.3);
+  --code-editor-status-bg: rgba(0, 0, 0, 0.3);
 }
 
 @theme inline {

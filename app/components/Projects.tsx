@@ -10,7 +10,7 @@ const projects = [
     technologies: ['AI/ML', 'Mobile Development', 'Healthcare'],
     gradient: 'from-pink-400/20 to-rose-400/20',
     borderColor: 'border-pink-400/30',
-    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=600&fit=crop',
+    image: '/luna.jpg',
     link: 'https://github.com/LemonLamo/Luna-AI',
   },
   {
@@ -19,7 +19,7 @@ const projects = [
     technologies: ['React', 'Node.js', 'MongoDB'],
     gradient: 'from-green-400/20 to-emerald-400/20',
     borderColor: 'border-green-400/30',
-    image: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&h=600&fit=crop',
+    image: '/nutrifind.png',
     link: 'https://github.com/LemonLamo/NutriFind',
   },
   {
@@ -28,8 +28,8 @@ const projects = [
     technologies: ['Next.js', 'TypeScript', 'Full Stack'],
     gradient: 'from-blue-400/20 to-cyan-400/20',
     borderColor: 'border-blue-400/30',
-    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop',
-    link: 'https://github.com/LemonLamo/apex-consulting',
+    image: '/apex.png',
+    link: 'https://github.com/LemonLamo/apex-consulting-',
   },
   {
     title: 'TraceIt',
@@ -37,8 +37,8 @@ const projects = [
     technologies: ['JavaScript', 'Express', 'PostgreSQL'],
     gradient: 'from-orange-400/20 to-amber-400/20',
     borderColor: 'border-orange-400/30',
-    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&h=600&fit=crop',
-    link: 'https://github.com/LemonLamo/TraceIt',
+    image: '/TraceIT.png',
+    link: 'https://github.com/LemonLamo/Trace-IT',
   },
   {
     title: 'PFE Project',
@@ -46,7 +46,7 @@ const projects = [
     technologies: ['TypeScript', 'Full Stack', 'Modern Web'],
     gradient: 'from-purple-400/20 to-violet-400/20',
     borderColor: 'border-purple-400/30',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
+    image: '/pfe.png',
     link: 'https://github.com/LemonLamo/PFE',
   },
   {
@@ -55,7 +55,7 @@ const projects = [
     technologies: ['React', 'WebSockets', 'Node.js'],
     gradient: 'from-teal-400/20 to-cyan-400/20',
     borderColor: 'border-teal-400/30',
-    image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&h=600&fit=crop',
+    image: '/hollow.png',
     link: 'https://github.com/LemonLamo/hollow-dev-challenges',
   },
 ];

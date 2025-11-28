@@ -33,32 +33,20 @@ export default function About() {
               <p className="text-lg leading-relaxed"
                 style={{ color: 'var(--text-tertiary)' }}
               >
-                I'm a <span className="font-semibold text-[#ff7b6c] highlight-line">software engineering student at USTHB</span>, 
-                driven by a passion for building innovative and impactful solutions. With hands-on experience in 
-                modern web technologies and full-stack development, I specialize in creating scalable, 
-                performant applications that deliver exceptional user experiences.
+                I'm currently a masters student with a passion for  <span className="font-semibold text-[#ff7b6c] highlight-line">Software Engineering </span>, 
+                I have always had a passion for software and been highly intrigued by computer science and various technical and scientifical fields and now i am lucky enough to make it my job.
+                
+                for me There's something about solving complex problems with various technologies and discovering new concepts and bringing brilliant ideas to life 
+                and that just clicks for me. 
+
+                So Whether it's building a full-stack app or diving into a new framework or a totally differentfield, I'm always really excited to build and learn.
+                could be all alone in my room or collaborating with a team, I just love the process of crafting something and seeing it come to life.
               </p>
-              <p className="text-lg leading-relaxed"
-                style={{ color: 'var(--text-tertiary)' }}
-              >
-                My journey spans <span className="font-semibold text-[#ff7b6c]">frontend frameworks</span> like React and Next.js, 
-                <span className="font-semibold text-[#a78bfa]"> backend technologies</span> including Node.js and Spring Boot, 
-                and modern DevOps practices. I'm constantly exploring emerging technologies to stay at the forefront of innovation.
-              </p>
+           
+    
             </div>
 
-            {/* Key Values */}
-            <div className="flex flex-wrap gap-3 mt-8">
-              {['Clean Code', 'Problem Solving', 'Continuous Learning', 'Team Collaboration'].map((value) => (
-                <span
-                  key={value}
-                  className="px-5 py-2.5 glass-effect rounded-full text-sm font-semibold hover:scale-105 hover:border-[#ff7b6c]/30 transition-all duration-300"
-                  style={{ color: 'var(--text-secondary)' }}
-                >
-                  {value}
-                </span>
-              ))}
-            </div>
+        
           </div>
 
 

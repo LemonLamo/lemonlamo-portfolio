@@ -200,7 +200,17 @@ export default function Hero() {
             </button>
             <button
               onClick={() => scrollToSection('contact')}
-              className="btn-apple px-8 py-4 bg-white/50 dark:bg-gray-900/50 hover:bg-white dark:hover:bg-gray-800 text-gray-900 dark:text-white font-semibold transition-all duration-300"
+              className="btn-apple px-8 py-4 font-semibold transition-all duration-300"
+              style={{
+                backgroundColor: 'var(--hero-button-secondary)',
+                color: 'var(--hero-button-secondary-text)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = 'var(--hero-button-secondary-hover)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'var(--hero-button-secondary)';
+              }}
             >
               Get In Touch
             </button>
@@ -212,9 +222,11 @@ export default function Hero() {
           ref={codeWindowRef} 
           className="w-full lg:w-auto"
         >
-          <div className="bg-gray-900/95 rounded-2xl overflow-hidden shadow-2xl w-full lg:max-w-xl border border-gray-700/50">
+          <div className="rounded-2xl overflow-hidden shadow-2xl w-full lg:max-w-xl border border-gray-700/50"
+            style={{ backgroundColor: 'var(--code-editor-bg)' }}>
             {/* Window Header */}
-            <div className="px-4 py-3 flex items-center gap-3 border-b border-gray-700/50 bg-gray-800/90">
+            <div className="px-4 py-3 flex items-center gap-3 border-b border-gray-700/50"
+              style={{ backgroundColor: 'var(--code-editor-header-bg)' }}>
               <div className="flex gap-2">
                 <div className="w-3 h-3 rounded-full bg-[#ff5f56] hover:brightness-110 transition-all cursor-pointer" />
                 <div className="w-3 h-3 rounded-full bg-[#ffbd2e] hover:brightness-110 transition-all cursor-pointer" />
@@ -240,17 +252,19 @@ export default function Hero() {
                 value={code}
                 onChange={(e) => setCode(e.target.value)}
                 spellCheck={false}
-                className="w-full p-5 pl-12 bg-gray-900/95 font-mono text-sm text-gray-300 min-h-[350px] resize-none outline-none border-none focus:ring-0 relative z-20 overflow-hidden"
+                className="w-full p-5 pl-12 font-mono text-sm text-gray-300 min-h-[350px] resize-none outline-none border-none focus:ring-0 relative z-20 overflow-hidden"
                 style={{
                   lineHeight: '1.6',
                   tabSize: 2,
                   caretColor: '#ff7b6c',
+                  backgroundColor: 'transparent',
                 }}
               />
             </div>
 
             {/* Status Bar */}
-            <div className="px-4 py-2 flex items-center justify-between text-xs border-t border-[#ff7b6c]/10 bg-white/30 dark:bg-gray-900/30">
+            <div className="px-4 py-2 flex items-center justify-between text-xs border-t border-[#ff7b6c]/10"
+              style={{ backgroundColor: 'var(--code-editor-status-bg)' }}>
               <div className="flex items-center gap-4">
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />

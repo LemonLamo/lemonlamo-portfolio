@@ -28,7 +28,6 @@ import {
   SiRedis,
   SiPostgresql,
   SiGraphql,
-  SiAmazon,
   SiSpringboot,
   SiFirebase,
   SiVuedotjs,
@@ -93,7 +92,6 @@ const skillCategories = [
     skills: [
       { name: 'Docker', icon: SiDocker, color: '#2496ED' },
       { name: 'Kubernetes', icon: SiKubernetes, color: '#326CE5' },
-      { name: 'AWS', icon: SiAmazon, color: '#FF9900' },
       { name: 'Git', icon: SiGit, color: '#F05032' },
       { name: 'Linux', icon: SiLinux, color: '#FCC624' },
       { name: 'RabbitMQ', icon: SiRabbitmq, color: '#FF6600' },
@@ -172,11 +170,9 @@ export default function Skills() {
                             }}
                           >
                             <Icon
-                              className={`w-5 h-5 transition-all duration-300 ${
-                                isNextOrExpress ? 'text-gray-700 dark:text-white' : ''
-                              }`}
+                              className="w-5 h-5 transition-all duration-300"
                               style={{
-                                color: isNextOrExpress ? undefined : skill.color,
+                                color: isNextOrExpress ? 'var(--icon-nextjs-express)' : skill.color,
                               }}
                             />
                           </div>
