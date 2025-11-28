@@ -57,14 +57,19 @@ export default function Contact() {
     >
       <div className="max-w-4xl mx-auto relative z-10">
         <div ref={contentRef}>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-center">
-            Get In <span className="gradient-text">Touch</span>
-          </h2>
-          <p className="text-xl text-center mb-12 max-w-2xl mx-auto"
-            style={{ color: 'var(--text-tertiary)' }}
-          >
-            I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
-          </p>
+          <div className="mb-12 text-center">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3"
+              style={{ color: 'var(--text-primary)' }}
+            >
+              Get In <span style={{ color: 'var(--accent-pink)' }}>Touch</span>
+            </h2>
+            <div className="w-20 h-1 mx-auto rounded-full" style={{ backgroundColor: 'var(--accent-purple)' }} />
+            <p className="text-base sm:text-xl mt-4 max-w-2xl mx-auto px-4"
+              style={{ color: 'var(--text-secondary)' }}
+            >
+              I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
+            </p>
+          </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {contactMethods.map((method, index) => (
@@ -78,14 +83,25 @@ export default function Contact() {
                 rel={method.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
-                className={`group relative flex flex-col items-center p-6 glass-effect rounded-3xl hover:shadow-2xl hover:shadow-[#ff7b6c]/20 transition-all duration-700 overflow-hidden ${hoveredIndex === index ? 'scale-105' : 'scale-100'}`}
+                className={`group relative flex flex-col items-center p-6 rounded-3xl transition-all duration-500 overflow-hidden ${hoveredIndex === index ? 'scale-105' : 'scale-100'}`}
+                style={{
+                  backgroundColor: 'var(--card-bg)',
+                  border: '2px solid',
+                  borderColor: method.type === 'Email' ? 'var(--accent-pink)' : method.type === 'LinkedIn' ? 'var(--accent-purple)' : 'var(--accent-pink)',
+                  boxShadow: hoveredIndex === index ? '0 20px 50px rgba(139, 92, 246, 0.2)' : 'none'
+                }}
               >
                 {/* Content */}
                 <div className="relative z-10 flex flex-col items-center">
-                  <div className={`w-16 h-16 glass-effect rounded-2xl flex items-center justify-center mb-4 transform transition-all duration-700 ${hoveredIndex === index ? 'scale-110' : 'scale-100'} ${method.type === 'Email' || method.type === 'GitHub' ? 'text-[#ff7b6c]' : 'text-[#a78bfa]'}`}>
+                  <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-4 transform transition-all duration-500 ${hoveredIndex === index ? 'scale-110' : 'scale-100'}`}
+                    style={{
+                      backgroundColor: method.type === 'Email' ? 'rgba(236, 72, 153, 0.15)' : method.type === 'LinkedIn' ? 'rgba(139, 92, 246, 0.15)' : 'rgba(236, 72, 153, 0.15)',
+                      color: method.type === 'Email' ? 'var(--accent-pink)' : method.type === 'LinkedIn' ? 'var(--accent-purple)' : 'var(--accent-pink)'
+                    }}>
                     {method.icon}
                   </div>
-                  <h3 className={`font-semibold text-lg mb-2 transition-colors duration-500 ${method.type === 'Email' || method.type === 'GitHub' ? 'text-[#ff7b6c]' : 'text-[#a78bfa]'}`}>
+                  <h3 className="font-semibold text-lg mb-2 transition-colors duration-500"
+                    style={{ color: method.type === 'Email' ? 'var(--accent-pink)' : method.type === 'LinkedIn' ? 'var(--accent-purple)' : 'var(--accent-pink)' }}>
                     {method.type}
                   </h3>
                   <p className="text-sm text-center transition-colors duration-500"
@@ -96,7 +112,8 @@ export default function Contact() {
                 </div>
 
                 {/* Animated arrow */}
-                <div className={`absolute bottom-4 right-4 transform transition-all duration-500 ${method.type === 'Email' || method.type === 'GitHub' ? 'text-[#ff7b6c]' : 'text-[#a78bfa]'} ${hoveredIndex === index ? 'translate-x-0 opacity-100' : 'translate-x-2 opacity-0'}`}>
+                <div className={`absolute bottom-4 right-4 transform transition-all duration-500 ${hoveredIndex === index ? 'translate-x-0 opacity-100' : 'translate-x-2 opacity-0'}`}
+                  style={{ color: method.type === 'Email' ? 'var(--accent-pink)' : method.type === 'LinkedIn' ? 'var(--accent-purple)' : 'var(--accent-pink)' }}>
                   <svg
                     className="w-5 h-5"
                     fill="none"
@@ -116,16 +133,20 @@ export default function Contact() {
           </div>
 
           {/* Call to action */}
-          <div className="text-center">
-            <p className="text-gray-600 dark:text-gray-400 mb-6">
+          <div className="text-center mt-16">
+            <p className="mb-6" style={{ color: 'var(--text-secondary)' }}>
               Let's collaborate and create something amazing together!
             </p>
-            <div className="inline-flex items-center gap-3 px-6 py-3 glass-effect rounded-full relative overflow-hidden group border border-[#ff7b6c]/30">
+            <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full relative overflow-hidden group"
+              style={{
+                backgroundColor: 'rgba(236, 72, 153, 0.1)',
+                border: '2px solid var(--accent-pink)'
+              }}>
               <span className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#ff7b6c] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-[#ff7b6c]"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" style={{ backgroundColor: 'var(--accent-pink)' }}></span>
+                <span className="relative inline-flex rounded-full h-3 w-3" style={{ backgroundColor: 'var(--accent-pink)' }}></span>
               </span>
-              <span className="relative font-semibold gradient-text">Available for opportunities</span>
+              <span className="relative font-semibold" style={{ color: 'var(--accent-pink)' }}>Available for opportunities</span>
             </div>
           </div>
         </div>

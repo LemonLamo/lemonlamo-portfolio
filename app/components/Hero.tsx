@@ -1,7 +1,77 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
+
+const ThemeLamp = ({ isDark, onClick }: { isDark: boolean; onClick: () => void }) => {
+  const lampRef = useRef<SVGSVGElement>(null);
+  const bulbRef = useRef<SVGCircleElement>(null);
+  const glowRef = useRef<SVGEllipseElement>(null);
+
+  useEffect(() => {
+    if (!lampRef.current || !bulbRef.current || !glowRef.current) return;
+
+    if (isDark) {
+      // Dark mode - lamp is OFF (no glow)
+      gsap.to(bulbRef.current, { fill: '#e5e7eb', duration: 0.4 });
+      gsap.to(glowRef.current, { opacity: 0, duration: 0.4 });
+    } else {
+      // Light mode - lamp is ON (warm yellow glow)
+      gsap.to(bulbRef.current, { fill: '#fde68a', duration: 0.4 });
+      gsap.to(glowRef.current, { opacity: 1, duration: 0.4 });
+    }
+  }, [isDark]);
+
+  return (
+    <svg
+      ref={lampRef}
+      width="80"
+      height="160"
+      viewBox="0 0 80 160"
+      className="cursor-pointer transition-transform hover:scale-105"
+      onClick={onClick}
+    >
+      {/* Cord */}
+      <line x1="40" y1="0" x2="40" y2="40" stroke="#64748b" strokeWidth="1.5" />
+      
+      {/* Top mounting bracket */}
+      <ellipse cx="40" cy="40" rx="6" ry="2.5" fill="#9f7aea" />
+      <rect x="34" y="40" width="12" height="3" fill="#9f7aea" />
+      
+      {/* Lamp shade top rim */}
+      <ellipse cx="40" cy="43" rx="26" ry="5" fill="#b794f6" />
+      
+      {/* Main shade body - smooth dome */}
+      <path
+        d="M 14 43 L 14 68 Q 14 75, 22 78 L 58 78 Q 66 75, 66 68 L 66 43 Z"
+        fill="#9f7aea"
+      />
+      
+      {/* Shade bottom rim */}
+      <ellipse cx="40" cy="78" rx="18" ry="3" fill="#8b5cf6" />
+      
+      {/* Light glow effect when on */}
+      <ellipse
+        ref={glowRef}
+        cx="40"
+        cy="95"
+        rx="22"
+        ry="12"
+        fill="#fde68a"
+        opacity="0"
+      />
+      
+      {/* Light bulb */}
+      <circle
+        ref={bulbRef}
+        cx="40"
+        cy="88"
+        r="8"
+        fill="#e5e7eb"
+      />
+    </svg>
+  );
+};
 
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
@@ -9,8 +79,8 @@ export default function Hero() {
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const codeWindowRef = useRef<HTMLDivElement>(null);
-  const codeLineRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const starRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const computerRef = useRef<HTMLDivElement>(null);
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const [activeTab, setActiveTab] = useState('App.tsx');
   const [isTyping, setIsTyping] = useState(false);
   const [code, setCode] = useState(`const profile = {
@@ -27,6 +97,21 @@ export default function Hero() {
   passion: "Building innovative solutions"
 };
 `);
+
+  useEffect(() => {
+    // Sync with actual theme on mount
+    const isDark = document.documentElement.classList.contains('dark');
+    setIsDarkMode(isDark);
+
+    // Listen for theme changes from navbar toggle
+    const handleThemeChange = () => {
+      const currentTheme = document.documentElement.classList.contains('dark');
+      setIsDarkMode(currentTheme);
+    };
+
+    window.addEventListener('themechange', handleThemeChange);
+    return () => window.removeEventListener('themechange', handleThemeChange);
+  }, []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -62,49 +147,17 @@ export default function Hero() {
           '-=0.6'
         );
 
-      // Code window animation - starts from intro zoom position
-      gsap.fromTo(codeWindowRef.current, 
-        {
-          scale: 0.45,
-          opacity: 1,
-          y: 50,
-        },
-        {
-          scale: 1,
-          opacity: 1,
-          y: 0,
-          duration: 1.2,
-          ease: 'power3.out',
-          delay: 0.2,
-        }
-      );
-
-      // Animate code lines with typing effect
-      codeLineRefs.current.forEach((line, index) => {
-        if (!line) return;
-        gsap.from(line, {
-          x: -10,
-          opacity: 0,
-          duration: 0.5,
-          delay: 1 + index * 0.08,
-          ease: 'power2.out',
-        });
+      // Computer desk animation
+      gsap.from(computerRef.current, {
+        scale: 0.8,
+        opacity: 0,
+        y: 50,
+        duration: 1.2,
+        ease: 'back.out(1.4)',
+        delay: 0.3,
       });
 
-      // Shooting stars animation
-      starRefs.current.forEach((star, index) => {
-        if (!star) return;
-        gsap.to(star, {
-          x: 300,
-          y: 300,
-          opacity: 0,
-          duration: 3,
-          delay: index * 2.5,
-          repeat: -1,
-          repeatDelay: 5,
-          ease: 'power1.in',
-        });
-      });
+      // Additional subtle animations can go here
     }, heroRef);
 
     return () => ctx.revert();
@@ -115,165 +168,217 @@ export default function Hero() {
     element?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const codeSnippets: Record<string, Array<{ color: string; text: string }>> = {
-    'App.tsx': [
-      { color: 'text-purple-400', text: 'import' },
-      { color: 'text-gray-300', text: ' React ' },
-      { color: 'text-purple-400', text: 'from' },
-      { color: 'text-[#ff7b6c]', text: ' "react"' },
-      { color: 'text-gray-500', text: ';' },
-      { color: '', text: '' },
-      { color: 'text-purple-400', text: 'const' },
-      { color: 'text-blue-400', text: ' Developer' },
-      { color: 'text-gray-300', text: ' = () => {' },
-      { color: 'text-purple-400', text: '  return' },
-      { color: 'text-gray-300', text: ' (' },
-      { color: 'text-gray-300', text: '    <div className="profile">' },
-      { color: 'text-[#ff7b6c]', text: '      <h1>Lamia Koucem</h1>' },
-      { color: 'text-gray-400', text: '      <p>Software Engineer @ USTHB</p>' },
-      { color: 'text-purple-400', text: '      <span>Status:</span>' },
-      { color: 'text-[#a78bfa]', text: ' Available' },
-      { color: 'text-gray-300', text: '    </div>' },
-      { color: 'text-gray-300', text: '  )' },
-      { color: 'text-gray-300', text: '}' },
-    ],
-    'skills.ts': [
-      { color: 'text-purple-400', text: 'export const' },
-      { color: 'text-blue-400', text: ' skills' },
-      { color: 'text-gray-300', text: ' = {' },
-      { color: 'text-[#ff7b6c]', text: '  frontend' },
-      { color: 'text-gray-300', text: ': [' },
-      { color: 'text-[#a78bfa]', text: '    "React", "Next.js", "TypeScript"' },
-      { color: 'text-gray-300', text: '  ],' },
-      { color: 'text-[#ff7b6c]', text: '  backend' },
-      { color: 'text-gray-300', text: ': [' },
-      { color: 'text-[#a78bfa]', text: '    "Node.js", "Spring Boot"' },
-      { color: 'text-gray-300', text: '  ],' },
-      { color: 'text-[#ff7b6c]', text: '  tools' },
-      { color: 'text-gray-300', text: ': [' },
-      { color: 'text-[#a78bfa]', text: '    "Docker", "Git", "AWS"' },
-      { color: 'text-gray-300', text: '  ]' },
-      { color: 'text-gray-300', text: '}' },
-    ],
+  const toggleTheme = () => {
+    const html = document.documentElement;
+    const newTheme = !isDarkMode;
+    
+    // GSAP animation for theme transition
+    gsap.to('body', {
+      opacity: 0.7,
+      duration: 0.2,
+      onComplete: () => {
+        if (newTheme) {
+          html.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+        } else {
+          html.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+        }
+        setIsDarkMode(newTheme);
+        gsap.to('body', { opacity: 1, duration: 0.3 });
+        
+        // Dispatch custom event to sync with other components
+        window.dispatchEvent(new Event('themechange'));
+      }
+    });
   };
-
-  const currentSnippet = codeSnippets[activeTab] || codeSnippets['App.tsx'];
 
   return (
     <section
       ref={heroRef}
-      className="relative min-h-[85vh] flex items-center justify-center px-6 py-16 overflow-hidden apple-grid"
+      className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12 sm:py-16 overflow-hidden"
       id="home"
+      style={{
+        background: `linear-gradient(to right, var(--hero-bg-left) 0%, var(--hero-bg-left) 50%, var(--hero-bg-right) 50%, var(--hero-bg-right) 100%)`,
+        position: 'relative'
+      }}
     >
+      {/* Subtle grid overlay */}
+      <div className="absolute inset-0 opacity-20" style={{
+        backgroundImage: `
+          linear-gradient(to right, var(--accent-purple) 1px, transparent 1px),
+          linear-gradient(to bottom, var(--accent-purple) 1px, transparent 1px)
+        `,
+        backgroundSize: '40px 40px'
+      }} />
+      
+      {/* Theme toggle lamp - centered top */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 z-50">
+        <ThemeLamp isDark={isDarkMode} onClick={toggleTheme} />
+      </div>
 
-
-      <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10">
-        {/* Left: Main Content */}
-        <div className="space-y-8">
-          <div className="space-y-6">
-            <h1
-              ref={titleRef}
-              className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight"
-            >
-              Hi, I'm{' '}
-              <span className="gradient-text highlight-line block mt-2">
-                Lamia Koucem
-              </span>
-            </h1>
-
-            <p
-              ref={subtitleRef}
-              className="text-xl md:text-2xl leading-relaxed"
-              style={{ color: 'var(--text-tertiary)' }}
-            >
-              Software Engineering Student at{' '}
-              <span className="font-semibold text-[#ff7b6c]">USTHB</span>, crafting elegant solutions with modern technologies.
-            </p>
-          </div>
-
-          <div ref={ctaRef} className="flex flex-wrap gap-4">
-            <button
-              onClick={() => scrollToSection('projects')}
-              className="btn-apple px-8 py-4 bg-[#ff7b6c]/80 hover:bg-[#ff7b6c] text-white font-semibold transition-all duration-300"
-            >
-              View My Work
-            </button>
-            <button
-              onClick={() => scrollToSection('contact')}
-              className="btn-apple px-8 py-4 font-semibold transition-all duration-300"
-              style={{
-                backgroundColor: 'var(--hero-button-secondary)',
-                color: 'var(--hero-button-secondary-text)',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = 'var(--hero-button-secondary-hover)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'var(--hero-button-secondary)';
-              }}
-            >
-              Get In Touch
-            </button>
-          </div>
-        </div>
-
-        {/* Right: Code Editor - Responsive */}
-        <div 
-          ref={codeWindowRef} 
-          className="w-full lg:w-auto"
+      {/* Text Section */}
+      <div className="max-w-7xl mx-auto relative z-10 w-full px-6 sm:px-8 text-center" style={{ paddingTop: '30px' }}>
+        <h1
+          ref={titleRef}
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-4"
+          style={{ color: 'var(--text-primary)' }}
         >
-          <div className="rounded-2xl overflow-hidden shadow-2xl w-full lg:max-w-xl border border-gray-700/50"
-            style={{ backgroundColor: 'var(--code-editor-bg)' }}>
-            {/* Window Header */}
-            <div className="px-4 py-3 flex items-center gap-3 border-b border-gray-700/50"
-              style={{ backgroundColor: 'var(--code-editor-header-bg)' }}>
-              <div className="flex gap-2">
-                <div className="w-3 h-3 rounded-full bg-[#ff5f56] hover:brightness-110 transition-all cursor-pointer" />
-                <div className="w-3 h-3 rounded-full bg-[#ffbd2e] hover:brightness-110 transition-all cursor-pointer" />
-                <div className="w-3 h-3 rounded-full bg-[#27c93f] hover:brightness-110 transition-all cursor-pointer" />
+          <span className="block text-lg sm:text-xl md:text-2xl font-normal mb-2" style={{ color: 'var(--text-secondary)' }}>
+            Hi, I'm
+          </span>
+          <span className="italic" style={{ color: 'var(--accent-purple)' }}>
+            Lamia{' '}
+          </span>
+          <span style={{ color: 'var(--accent-pink)' }}>
+            Koucem
+          </span>
+        </h1>
+        
+        <p
+          ref={subtitleRef}
+          className="text-sm sm:text-base md:text-lg lg:text-xl font-normal leading-relaxed max-w-md sm:max-w-lg md:max-w-xl mx-auto mt-4"
+          style={{ color: 'var(--text-secondary)' }}
+        >
+          I like <span className="font-bold italic" style={{ color: 'var(--accent-pink)' }}>creating</span> <span className="font-bold" style={{ color: 'var(--accent-purple)' }}>innovative solutions </span> with code.
+        </p>
+      </div>
+
+      {/* Computer Section - Separate Container */}
+      <div className="max-w-7xl mx-auto relative z-10 w-full px-4 sm:px-6 flex justify-center" style={{ paddingTop: '20px' }}>
+        <div ref={computerRef} className="w-full max-w-sm md:max-w-md">
+          {/* Computer Monitor */}
+          <div className="relative">
+          {/* Monitor bezel */}
+          <div
+            className="p-1.5 sm:p-2 rounded-lg sm:rounded-xl shadow-2xl"
+            style={{
+              backgroundColor: 'var(--text-primary)',
+              border: '3px solid var(--text-primary)'
+            }}
+          >
+            {/* Screen */}
+            <div
+              className="rounded-lg sm:rounded-xl overflow-hidden shadow-xl"
+              style={{
+                backgroundColor: 'var(--code-editor-bg)',
+                border: '2px solid var(--accent-purple)'
+              }}
+            >
+              {/* Window Header */}
+              <div
+                className="px-2 sm:px-3 py-1.5 sm:py-2 flex items-center gap-1.5 sm:gap-2 border-b"
+                style={{
+                  backgroundColor: 'var(--code-editor-header-bg)',
+                  borderColor: 'var(--accent-purple)'
+                }}
+              >
+                <div className="flex gap-1 sm:gap-1.5">
+                  <div
+                    className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full hover:brightness-110 transition-all cursor-pointer"
+                    style={{ backgroundColor: '#ff5f56' }}
+                  />
+                  <div
+                    className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full hover:brightness-110 transition-all cursor-pointer"
+                    style={{ backgroundColor: '#ffbd2e' }}
+                  />
+                  <div
+                    className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full hover:brightness-110 transition-all cursor-pointer"
+                    style={{ backgroundColor: '#27c93f' }}
+                  />
+                </div>
+
+                <div className="flex gap-1 ml-1.5 sm:ml-3">
+                  <button
+                    className="px-1.5 sm:px-2 py-0.5 text-[10px] sm:text-xs font-semibold rounded-md"
+                    style={{
+                      backgroundColor: 'var(--accent-purple)',
+                      color: '#ffffff'
+                    }}
+                  >
+                    {activeTab}
+                  </button>
+                </div>
               </div>
-              <div className="flex gap-1 ml-4">
-                <button className="px-3 py-1 text-xs font-medium rounded-lg bg-[#ff7b6c]/20 text-[#ff8a78]">
-                  {activeTab}
-                </button>
+
+              {/* Code Editor Area */}
+              <div className="relative">
+                <div
+                  className="absolute top-3 sm:top-5 left-2 text-xs font-mono select-none pointer-events-none z-10"
+                  style={{ color: 'var(--code-line-number)' }}
+                >
+                  {code.split('\n').map((_, i) => (
+                    <div
+                      key={i}
+                      className="h-5 sm:h-[22.4px] text-right pr-2 sm:pr-3"
+                      style={{ lineHeight: '1.6' }}
+                    >
+                      {i + 1}
+                    </div>
+                  ))}
+                </div>
+
+                <textarea
+                  value={code}
+                  onChange={(e) => setCode(e.target.value)}
+                  spellCheck={false}
+                  className="w-full p-2 sm:p-3 pl-8 sm:pl-10 font-mono text-[10px] sm:text-xs min-h-[200px] sm:min-h-[250px] resize-none outline-none border-none focus:ring-0 relative z-20 overflow-hidden"
+                  style={{
+                    lineHeight: '1.6',
+                    tabSize: 2,
+                    caretColor: 'var(--accent-pink)',
+                    backgroundColor: 'transparent',
+                    color: 'var(--code-editor-text)'
+                  }}
+                />
+              </div>
+
+              {/* Status Bar */}
+              <div
+                className="px-3 sm:px-4 py-1.5 sm:py-2 flex items-center justify-between text-xs border-t"
+                style={{
+                  backgroundColor: 'var(--code-editor-status-bg)',
+                  borderColor: 'var(--accent-purple)'
+                }}
+              >
+                <div className="flex items-center gap-2 sm:gap-4">
+                  <div className="flex items-center gap-1.5 sm:gap-2">
+                    <div
+                      className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full animate-pulse"
+                      style={{ backgroundColor: 'var(--accent-purple)' }}
+                    />
+                    <span
+                      className="font-medium hidden sm:inline"
+                      style={{ color: 'var(--code-editor-text)' }}
+                    >
+                      Ready
+                    </span>
+                  </div>
+                  <span className="hidden sm:inline" style={{ color: 'var(--code-line-number)' }}>
+                    TypeScript
+                  </span>
+                </div>
+
+                <span className="text-xs" style={{ color: 'var(--code-line-number)' }}>
+                  Ln {code.split('\n').length}
+                </span>
               </div>
             </div>
             
-            {/* Code Editor Area */}
-            <div className="relative">
-              <div className="absolute top-5 left-2 text-xs text-gray-400 font-mono select-none pointer-events-none z-10">
-                {code.split('\n').map((_, i) => (
-                  <div key={i} className="h-[22.4px] text-right pr-3" style={{ lineHeight: '1.6' }}>
-                    {i + 1}
-                  </div>
-                ))}
-              </div>
-              <textarea
-                value={code}
-                onChange={(e) => setCode(e.target.value)}
-                spellCheck={false}
-                className="w-full p-5 pl-12 font-mono text-sm text-gray-300 min-h-[350px] resize-none outline-none border-none focus:ring-0 relative z-20 overflow-hidden"
-                style={{
-                  lineHeight: '1.6',
-                  tabSize: 2,
-                  caretColor: '#ff7b6c',
-                  backgroundColor: 'transparent',
-                }}
-              />
-            </div>
-
-            {/* Status Bar */}
-            <div className="px-4 py-2 flex items-center justify-between text-xs border-t border-[#ff7b6c]/10"
-              style={{ backgroundColor: 'var(--code-editor-status-bg)' }}>
-              <div className="flex items-center gap-4">
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                  <span className="text-gray-600 dark:text-gray-400 font-medium">Ready</span>
-                </div>
-                <span className="text-gray-500">JavaScript</span>
-              </div>
-              <span className="text-gray-500">Ln {code.split('\n').length}, Col {code.split('\n').pop()?.length || 0}</span>
-            </div>
+            {/* Monitor chin/bottom bezel */}
+            <div className="h-8 sm:h-10 rounded-b-2xl sm:rounded-b-3xl" 
+              style={{ backgroundColor: 'var(--text-primary)' }} />
+          </div>
+          
+          {/* Monitor stand */}
+          <div className="flex flex-col items-center mt-2">
+            {/* Stand neck */}
+            <div className="w-4 sm:w-6 h-6 sm:h-8" 
+              style={{ backgroundColor: 'var(--text-primary)' }} />
+            {/* Stand base */}
+            <div className="w-20 sm:w-28 h-2 sm:h-3 rounded-full" 
+              style={{ backgroundColor: 'var(--text-primary)' }} />
+          </div>
           </div>
         </div>
       </div>

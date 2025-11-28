@@ -111,16 +111,16 @@ export default function Footer() {
         {/* Bottom */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
           <p className="text-gray-600 dark:text-gray-400">
-            © {currentYear} Lamia Koucem. All rights reserved.
+            © {currentYear} Lamia Koucem. Made with care.
           </p>
           <div className="flex items-center gap-3 text-gray-600 dark:text-gray-400">
             <span>Built with</span>
             <div className="flex items-center gap-2">
-              <span className="text-[#ff7b6c] font-semibold">Next.js</span>
-              <span>•</span>
-              <span className="text-[#a78bfa] font-semibold">GSAP</span>
-              <span>•</span>
-              <span className="text-[#ff7b6c] font-semibold">Tailwind</span>
+              <span className="text-[#ff7b6c] font-semibold hover:scale-110 inline-block transition-transform cursor-default">Next.js</span>
+              <span className="animate-pulse">•</span>
+              <span className="text-[#a78bfa] font-semibold hover:scale-110 inline-block transition-transform cursor-default">GSAP</span>
+              <span className="animate-pulse">•</span>
+              <span className="text-[#ff7b6c] font-semibold hover:scale-110 inline-block transition-transform cursor-default">Tailwind</span>
             </div>
           </div>
         </div>

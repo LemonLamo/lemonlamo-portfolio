@@ -6,10 +6,14 @@ import ThemeToggle from './ThemeToggle';
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
+      const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (window.scrollY / windowHeight) * 100;
+      setScrollProgress(scrolled);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -34,7 +38,7 @@ export default function Navbar() {
     <nav 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'backdrop-blur-md border-b' 
+          ? 'border-b' 
           : 'border-b border-transparent'
       }`}
       style={{
@@ -42,13 +46,20 @@ export default function Navbar() {
         borderBottomColor: isScrolled ? 'var(--navbar-border)' : 'transparent',
       }}
     >
+      {/* Scroll progress bar */}
+      <div className="absolute bottom-0 left-0 h-0.5 transition-all duration-300"
+        style={{ 
+          width: `${scrollProgress}%`,
+          background: 'linear-gradient(to right, var(--accent-pink), var(--accent-purple), var(--accent-pink))'
+        }}
+      />
       <div className="max-w-7xl mx-auto px-6 py-4 relative">
         <div className="flex items-center justify-between">
           <button
             onClick={() => scrollToSection('home')}
-            className="flex items-center gap-2 text-2xl font-bold gradient-text group"
+            className="flex items-center gap-2 text-xl group relative"
           >
-            <span className="text-3xl">🍋</span>
+            <span className="font-bold" style={{ color: 'var(--accent-purple)' }}>&lt;LK/&gt;</span>
           </button>
 
           {/* Desktop Menu */}
@@ -57,8 +68,10 @@ export default function Navbar() {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="font-medium transition-colors hover:text-[#ff6b5a] dark:hover:text-[#ff8a78]"
+                className="font-medium transition-colors"
                 style={{ color: 'var(--text-secondary)' }}
+                onMouseEnter={(e) => e.currentTarget.style.color = 'var(--accent-pink)'}
+                onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}
               >
                 {item.name}
               </button>
@@ -102,7 +115,7 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden absolute right-4 top-full mt-2 w-64 backdrop-blur-xl rounded-3xl p-6 shadow-2xl animate-slideDown"
+          <div className="md:hidden absolute right-4 top-full mt-2 w-64 rounded-3xl p-6 shadow-2xl animate-slideDown"
             style={{
               backgroundColor: 'var(--navbar-bg)',
               borderColor: 'var(--navbar-border)',
@@ -114,8 +127,10 @@ export default function Navbar() {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className="text-left font-semibold transition-colors py-3 px-4 rounded-xl hover:text-[#ff6b5a] dark:hover:text-[#ff8a78] hover:bg-gray-100/50 dark:hover:bg-white/5"
+                  className="text-left font-semibold transition-colors py-3 px-4 rounded-xl hover:bg-gray-100/50 dark:hover:bg-white/5"
                   style={{ color: 'var(--text-secondary)' }}
+                  onMouseEnter={(e) => e.currentTarget.style.color = 'var(--accent-pink)'}
+                  onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}
                 >
                   {item.name}
                 </button>

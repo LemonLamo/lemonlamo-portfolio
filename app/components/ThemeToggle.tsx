@@ -17,6 +17,15 @@ export default function ThemeToggle() {
       setIsDark(true);
       document.documentElement.classList.add('dark');
     }
+
+    // Listen for theme changes from other components (lamp)
+    const handleThemeChange = () => {
+      const currentTheme = document.documentElement.classList.contains('dark');
+      setIsDark(currentTheme);
+    };
+
+    window.addEventListener('themechange', handleThemeChange);
+    return () => window.removeEventListener('themechange', handleThemeChange);
   }, []);
 
   const toggleTheme = () => {
@@ -30,6 +39,9 @@ export default function ThemeToggle() {
       document.documentElement.classList.remove('dark');
       localStorage.setItem('theme', 'light');
     }
+
+    // Notify other components (lamp) about theme change
+    window.dispatchEvent(new Event('themechange'));
   };
 
   // Prevent flash of wrong theme
