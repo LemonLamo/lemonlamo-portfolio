@@ -15,17 +15,17 @@ const projects = [
   },
   {
     title: 'NutriFind',
-    description: 'Smart nutrition tracking and meal planning application helping users make informed dietary choices and achieve their health goals.',
-    technologies: ['React', 'Node.js', 'MongoDB'],
+    description: 'A mobile app that helps you discover food options tailored to your health needs and fitness goals, with delivery services and personalized recipe recommendations and interactive map.',
+    technologies: ['React Native', 'Node.js', 'MongoDB'],
     gradient: 'from-green-400/20 to-emerald-400/20',
     borderColor: 'border-green-400/30',
     image: '/nutrifind.png',
-    link: 'https://github.com/LemonLamo/NutriFind',
+    link: 'https://github.com/Lazy-Skelly/NutriFind',
   },
   {
     title: 'Apex Consulting',
-    description: 'Professional consulting platform connecting businesses with expert advisors for strategic guidance and business development.',
-    technologies: ['Next.js', 'TypeScript', 'Full Stack'],
+    description: 'A modern landing page for a professional consulting firm, featuring elegant design and responsive layouts to showcase services and expertise.',
+    technologies: ['Next.js', 'TypeScript', 'Tailwind CSS'],
     gradient: 'from-blue-400/20 to-cyan-400/20',
     borderColor: 'border-blue-400/30',
     image: '/apex.png',
@@ -33,7 +33,7 @@ const projects = [
   },
   {
     title: 'TraceIt',
-    description: 'Advanced tracking and logistics management system providing real-time visibility and optimization for supply chain operations.',
+    description: 'An interactive cybersecurity learning platform featuring Capture The Flag (CTF) challenges to help users develop and practice their security skills.',
     technologies: ['JavaScript', 'Express', 'PostgreSQL'],
     gradient: 'from-orange-400/20 to-amber-400/20',
     borderColor: 'border-orange-400/30',
@@ -41,9 +41,9 @@ const projects = [
     link: 'https://github.com/LemonLamo/Trace-IT',
   },
   {
-    title: 'PFE Project',
-    description: 'End-of-studies project showcasing modern web development practices with TypeScript and scalable architecture.',
-    technologies: ['TypeScript', 'Full Stack', 'Modern Web'],
+    title: 'Healthcare Interoperability System',
+    description: 'Blockchain-based solution automating secure data exchange between Algerian hospitals and government ministries for disability patients, using Hyperledger Fabric and smart contracts with AES-192 encryption.',
+    technologies: ['Hyperledger Fabric', 'Node.js', 'React', 'Docker'],
     gradient: 'from-purple-400/20 to-violet-400/20',
     borderColor: 'border-purple-400/30',
     image: '/pfe.png',
@@ -51,8 +51,8 @@ const projects = [
   },
   {
     title: 'Hollow Dev Challenges',
-    description: 'Collaborative platform for developers to participate in coding challenges, share solutions, and showcase their skills.',
-    technologies: ['React', 'WebSockets', 'Node.js'],
+    description: 'A collection of programming challenges and solutions showcasing problem-solving skills across various algorithms and data structures.',
+    technologies: ['JavaScript', 'Algorithms', 'Problem Solving'],
     gradient: 'from-teal-400/20 to-cyan-400/20',
     borderColor: 'border-teal-400/30',
     image: '/hollow.png',
@@ -175,6 +175,11 @@ export default function Projects() {
               </div>
             </div>
           ))}
+        </div>
+        <div className="mt-12 text-center">
+          <p className="text-lg font-small" style={{ color: 'var(--text-secondary)' }}>
+            And more projects soon to be displayed... 
+          </p>
         </div>
       </div>
     </section>
