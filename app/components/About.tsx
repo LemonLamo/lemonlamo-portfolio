@@ -11,7 +11,7 @@ export default function About() {
     <section
       ref={sectionRef}
       id="about"
-      className="py-16 px-6 apple-grid relative overflow-hidden"
+      className="py-8 px-6 apple-grid relative overflow-hidden"
     >
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Section Title */}
