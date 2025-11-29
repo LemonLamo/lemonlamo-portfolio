@@ -76,6 +76,25 @@ const services = [
     ),
     features: ['Workshop Training', 'Code Mentoring', 'Best Practices'],
   },
+  {
+    title: 'DevOps & Cloud Architecture',
+    description: 'Building and managing scalable cloud infrastructure using Docker, Kubernetes, and modern CI/CD pipelines. Designing robust architectures that ensure high availability and seamless deployment workflows.',
+    icon: (
+      <svg className="w-12 h-12" viewBox="0 0 64 64" fill="none">
+        <path d="M32 12C28 12 24 14 22 18C18 18 14 22 14 26C14 30 18 34 22 34H42C46 34 50 30 50 26C50 22 46 18 42 18C40 14 36 12 32 12Z" fill="#9f7aea" opacity="0.2"/>
+        <path d="M32 12C28 12 24 14 22 18C18 18 14 22 14 26C14 30 18 34 22 34H42C46 34 50 30 50 26C50 22 46 18 42 18C40 14 36 12 32 12Z" stroke="#9f7aea" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        <rect x="20" y="40" width="10" height="8" rx="1" fill="#9f7aea" opacity="0.3"/>
+        <rect x="20" y="40" width="10" height="8" rx="1" stroke="#9f7aea" strokeWidth="2"/>
+        <rect x="34" y="40" width="10" height="8" rx="1" fill="#ff8a7a" opacity="0.3"/>
+        <rect x="34" y="40" width="10" height="8" rx="1" stroke="#ff8a7a" strokeWidth="2"/>
+        <line x1="25" y1="34" x2="25" y2="40" stroke="#9f7aea" strokeWidth="2" strokeLinecap="round"/>
+        <line x1="39" y1="34" x2="39" y2="40" stroke="#ff8a7a" strokeWidth="2" strokeLinecap="round"/>
+        <circle cx="25" cy="52" r="2" fill="#9f7aea"/>
+        <circle cx="39" cy="52" r="2" fill="#ff8a7a"/>
+      </svg>
+    ),
+    features: ['CI/CD Pipelines', 'Docker & Kubernetes', 'Cloud Platforms', 'Infrastructure Design'],
+  },
 ];
 
 export default function Services() {
@@ -105,7 +124,7 @@ export default function Services() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {services.map((service, index) => (
+          {services.slice(0, 4).map((service, index) => (
             <div
               key={service.title}
               onMouseEnter={() => setHoveredIndex(index)}
@@ -169,6 +188,71 @@ export default function Services() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* 5th Service - Centered on larger screens */}
+        <div className="mt-6 flex justify-center">
+          <div
+            onMouseEnter={() => setHoveredIndex(4)}
+            onMouseLeave={() => setHoveredIndex(null)}
+            className={`group rounded-2xl hover:scale-[1.02] hover:shadow-xl transition-all duration-500 overflow-hidden w-full md:w-1/2 ${hoveredIndex === 4 ? 'shadow-xl' : ''}`}
+            style={{
+              backgroundColor: 'var(--card-bg)',
+              border: '2px solid',
+              borderColor: 'var(--accent-purple)'
+            }}
+          >
+            {/* Header with dots */}
+            <div className="flex items-center gap-2 px-4 py-3 border-b" style={{ 
+              backgroundColor: 'rgba(196, 181, 253, 0.1)',
+              borderBottomColor: 'var(--card-border)'
+            }}>
+              <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: '#c4b5fd' }} />
+              <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: '#f9a8d4' }} />
+              <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: '#e9d5ff' }} />
+            </div>
+
+            <div className="p-6">
+              {/* Icon */}
+              <div className="mb-4">
+                {services[4].icon}
+              </div>
+
+              {/* Title */}
+              <h3 
+                className="text-2xl font-bold mb-3"
+                style={{ color: 'var(--accent-purple)' }}
+              >
+                {services[4].title}
+              </h3>
+
+              {/* Description */}
+              <p 
+                className="text-sm leading-relaxed mb-4"
+                style={{ color: 'var(--text-tertiary)' }}
+              >
+                {services[4].description}
+              </p>
+
+              {/* Features */}
+              <div className="space-y-2">
+                {services[4].features.map((feature, idx) => (
+                  <div key={idx} className="flex items-center gap-2">
+                    <div 
+                      className="w-1.5 h-1.5 rounded-full"
+                      style={{ backgroundColor: 'var(--accent-purple)' }}
+                    />
+                    <span 
+                      className="text-xs font-medium"
+                      style={{ color: 'var(--text-secondary)' }}
+                    >
+                      {feature}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
 
       </div>
