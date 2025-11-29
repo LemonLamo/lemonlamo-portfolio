@@ -53,28 +53,39 @@ export default function Education() {
           </p>
         </div>
 
-        <div className="space-y-6">
+        {/* Timeline Container */}
+        <div className="relative max-w-4xl mx-auto">
+          {/* Timeline Line */}
+          <div 
+            className="absolute left-8 top-0 bottom-0 w-0.5"
+            style={{ 
+              background: 'linear-gradient(to bottom, var(--accent-purple), var(--accent-pink))'
+            }}
+          />
+
           {education.map((item, index) => (
-            <div
-              key={index}
-              className="group rounded-2xl hover:scale-[1.02] hover:shadow-xl transition-all duration-500 overflow-hidden"
-              style={{
-                backgroundColor: 'var(--card-bg)',
-                border: '2px solid',
-                borderColor: index % 2 === 0 ? 'var(--accent-purple)' : 'var(--accent-pink)'
-              }}
-            >
-              {/* Header with dots */}
-              <div className="flex items-center gap-2 px-4 py-3 border-b" style={{ 
-                backgroundColor: index % 2 === 0 ? 'rgba(196, 181, 253, 0.1)' : 'rgba(251, 207, 232, 0.1)',
-                borderBottomColor: 'var(--card-border)'
-              }}>
-                <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: '#c4b5fd' }} />
-                <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: '#f9a8d4' }} />
-                <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: '#e9d5ff' }} />
-                <div className="ml-auto">
+            <div key={index} className="relative pl-20 pb-10 last:pb-0 group">
+              {/* Timeline Dot */}
+              <div 
+                className="absolute left-5 top-1 w-6 h-6 rounded-full border-4 transition-all duration-300 group-hover:scale-125"
+                style={{
+                  backgroundColor: 'var(--card-bg)',
+                  borderColor: index % 2 === 0 ? 'var(--accent-purple)' : 'var(--accent-pink)',
+                  boxShadow: `0 0 0 4px ${index % 2 === 0 ? 'rgba(139, 92, 246, 0.1)' : 'rgba(236, 72, 153, 0.1)'}`
+                }}
+              />
+
+              {/* Content */}
+              <div className="space-y-1.5">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between sm:gap-4">
+                  <h3 
+                    className="text-lg sm:text-xl font-bold transition-colors duration-300"
+                    style={{ color: index % 2 === 0 ? 'var(--accent-purple)' : 'var(--accent-pink)' }}
+                  >
+                    {item.degree}
+                  </h3>
                   <span 
-                    className="text-xs font-semibold px-3 py-1 rounded-full"
+                    className="text-xs font-semibold px-2.5 py-1 rounded-full self-start sm:self-center whitespace-nowrap"
                     style={{
                       backgroundColor: index % 2 === 0 ? 'rgba(139, 92, 246, 0.15)' : 'rgba(236, 72, 153, 0.15)',
                       color: index % 2 === 0 ? 'var(--accent-purple)' : 'var(--accent-pink)',
@@ -83,33 +94,23 @@ export default function Education() {
                     {item.status}
                   </span>
                 </div>
-              </div>
-
-              <div className="p-6">
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
-                  <div className="flex-1">
-                    <h3 
-                      className="text-xl sm:text-2xl font-bold mb-2"
-                      style={{ color: index % 2 === 0 ? 'var(--accent-purple)' : 'var(--accent-pink)' }}
-                    >
-                      {item.degree}
-                    </h3>
-                    <p 
-                      className="text-base sm:text-lg font-semibold mb-1"
-                      style={{ color: 'var(--text-primary)' }}
-                    >
-                      {item.institution}
-                    </p>
-                  </div>
-                  <div 
-                    className="text-sm sm:text-base font-semibold"
-                    style={{ color: 'var(--text-secondary)' }}
-                  >
-                    {item.period}
-                  </div>
-                </div>
+                
                 <p 
-                  className="text-sm sm:text-base leading-relaxed"
+                  className="text-sm sm:text-base font-semibold"
+                  style={{ color: 'var(--text-primary)' }}
+                >
+                  {item.institution}
+                </p>
+                
+                <p 
+                  className="text-xs sm:text-sm font-medium"
+                  style={{ color: 'var(--text-secondary)' }}
+                >
+                  {item.period}
+                </p>
+                
+                <p 
+                  className="text-xs sm:text-sm leading-relaxed pt-1"
                   style={{ color: 'var(--text-tertiary)' }}
                 >
                   {item.description}

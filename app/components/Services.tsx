@@ -146,15 +146,15 @@ export default function Services() {
                 <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: '#e9d5ff' }} />
               </div>
 
-              <div className="p-6">
+              <div className="p-5">
                 {/* Icon */}
-                <div className="mb-4">
+                <div className="mb-3">
                   {service.icon}
                 </div>
 
                 {/* Title */}
                 <h3 
-                  className="text-2xl font-bold mb-3"
+                  className="text-xl font-bold mb-2"
                   style={{ color: index % 2 === 0 ? 'var(--accent-purple)' : 'var(--accent-pink)' }}
                 >
                   {service.title}
@@ -162,7 +162,7 @@ export default function Services() {
 
                 {/* Description */}
                 <p 
-                  className="text-sm leading-relaxed mb-4"
+                  className="text-xs leading-relaxed mb-3"
                   style={{ color: 'var(--text-tertiary)' }}
                 >
                   {service.description}
@@ -212,15 +212,15 @@ export default function Services() {
               <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: '#e9d5ff' }} />
             </div>
 
-            <div className="p-6">
+            <div className="p-5">
               {/* Icon */}
-              <div className="mb-4">
+              <div className="mb-3">
                 {services[4].icon}
               </div>
 
               {/* Title */}
               <h3 
-                className="text-2xl font-bold mb-3"
+                className="text-xl font-bold mb-2"
                 style={{ color: 'var(--accent-purple)' }}
               >
                 {services[4].title}
@@ -228,7 +228,7 @@ export default function Services() {
 
               {/* Description */}
               <p 
-                className="text-sm leading-relaxed mb-4"
+                className="text-xs leading-relaxed mb-3"
                 style={{ color: 'var(--text-tertiary)' }}
               >
                 {services[4].description}
