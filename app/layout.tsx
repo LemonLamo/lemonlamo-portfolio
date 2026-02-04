@@ -38,6 +38,7 @@ export const metadata: Metadata = {
   creator: "Lamia Koucem",
   publisher: "Lamia Koucem",
   metadataBase: new URL("https://lamia-koucem.vercel.app"),
+  
   alternates: {
     canonical: "/",
   },
@@ -77,6 +78,7 @@ export const metadata: Metadata = {
   },
   verification: {
     google: "0rYlpdFtVEjJnzeqD70axfPFJXdc1gv7tLu-82rEWEI",
+    
   },
   category: "technology",
 };
@@ -125,6 +127,7 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/icon-192.png" />
         <meta name="theme-color" content="#8b5cf6" />
+        <meta name="google-site-verification" content="0rYlpdFtVEjJnzeqD70axfPFJXdc1gv7tLu-82rEWEI" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
