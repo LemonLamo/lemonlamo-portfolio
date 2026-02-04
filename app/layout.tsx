@@ -37,14 +37,14 @@ export const metadata: Metadata = {
   authors: [{ name: "Lamia Koucem", url: "https://lemonlamo-portfolio.vercel.app" }],
   creator: "Lamia Koucem",
   publisher: "Lamia Koucem",
-  metadataBase: new URL("https://lemonlamo-portfolio.vercel.app"),
+  metadataBase: new URL("https://lamia-koucem.vercel.app"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://lemonlamo-portfolio.vercel.app",
+    url: "https://lamia-koucem.vercel.app",
     siteName: "Lamia Koucem Portfolio",
     title: "Lamia Koucem | Software Engineer & Full-Stack Developer",
     description: "Lamia Koucem is a Software Engineer and Full-Stack Developer specializing in React, Next.js, Node.js, and mobile development. Explore my projects and services.",
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: "your-google-verification-code",
+    google: "0rYlpdFtVEjJnzeqD70axfPFJXdc1gv7tLu-82rEWEI",
   },
   category: "technology",
 };
