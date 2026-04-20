@@ -256,7 +256,7 @@ export default function Hero() {
     >
       {/* Subtle grid overlay */}
       <div
-        className="absolute inset-0 opacity-20"
+        className="absolute inset-0 opacity-20 pointer-events-none"
         style={{
           backgroundImage: `
             linear-gradient(to right, var(--accent-purple) 1px, transparent 1px),
@@ -271,7 +271,7 @@ export default function Hero() {
         <ThemeLamp isDark={isDarkMode} onClick={toggleTheme} />
       </div>
 
-      <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8" style={{ paddingTop: '80px' }}>
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8" style={{ paddingTop: '80px' }}>
         {/* Text */}
         <div className="text-center mb-8 relative">
           {/* Small star doodle — kept, arrow removed */}
