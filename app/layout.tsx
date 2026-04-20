@@ -128,20 +128,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="dark" suppressHydrationWarning>
       <head>
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/icon-192.png" />
         <meta name="theme-color" content="#8b5cf6" />
         <meta name="google-site-verification" content="0rYlpdFtVEjJnzeqD70axfPFJXdc1gv7tLu-82rEWEI" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} antialiased`}
+        suppressHydrationWarning
       >
+        <script
+          id="portfolio-jsonld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          suppressHydrationWarning
+        />
         {children}
       </body>
     </html>

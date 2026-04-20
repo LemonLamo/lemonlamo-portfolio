@@ -47,13 +47,21 @@
   --ink: #1a1a1a;
   --card-bg-solid: #fffdf9;
 
+  /* Hero desk scene — adapts across modes */
+  --desk-chrome: #2b2740;
+  --desk-screen-frame: #3b364a;
+  --desk-stand: #c4c9d4;
+  --desk-stand-shadow: #8b8f9b;
+  --desk-camera: #1a1825;
+  --desk-highlight: #4a4560;
+
   /* Subtle per-section backgrounds (light mode) — very light hints of hue */
   --bg-about:    #f5f3ff;  /* whisper lavender */
   --bg-skills:   #fffdf5;  /* whisper cream */
   --bg-projects: #fff7ed;  /* whisper peach */
   --bg-services: #edf4fd;  /* whisper sky */
   --bg-education: #fff7ed; /* whisper pink */
-  --bg-contact:  #dde9fa;  /* beige */
+  --bg-contact:  #e2eeff;  /* beige */
 }
 
 .dark {
@@ -103,13 +111,21 @@
   --ink: #fafafa;
   --card-bg-solid: #202022;
 
+  /* Hero desk scene — lifted for visibility on dark bg */
+  --desk-chrome: #3a3556;
+  --desk-screen-frame: #4a4560;
+  --desk-stand: #d4d9e2;
+  --desk-stand-shadow: #9aa0ad;
+  --desk-camera: #0a0814;
+  --desk-highlight: #5a5473;
+
   /* Subtle per-section backgrounds (dark mode) — varying shades of neutral grey, at most a greyish purple hint */
-  --bg-about:    #2c2837;  /* grey with faint purple */
+  --bg-about:    #252530;  /* grey with faint purple */
   --bg-skills:   #262628;  /* neutral dark grey */
   --bg-projects: #2b2b2d;  /* neutral medium grey */
   --bg-services: #252530;  /* grey with faint purple */
   --bg-education: #29292b; /* neutral grey */
-  --bg-contact:  #27242e; /* greyish purple */
+  --bg-contact:  #252530; /* greyish purple */
 }
 
 @theme inline {

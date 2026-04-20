@@ -42,7 +42,7 @@ export default function About() {
               <p className="text-base md:text-lg leading-relaxed"
                 style={{ color: 'var(--text-tertiary)' }}
               >
-                Full-stack by trade, curious by default — whether that&apos;s shipping a mobile app, picking up a new framework over the weekend, or collaborating with a team to bring an idea to life. I care about craft, clean code, and interfaces that feel good to use.
+                Full-stack by trade, curious by default  whether that&apos;s shipping a mobile app, picking up a new framework over the weekend, or collaborating with a team to bring an idea to life. I care about craft, clean code, and interfaces that feel good to use.
               </p>
             </div>
           </div>

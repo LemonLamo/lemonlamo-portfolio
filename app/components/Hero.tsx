@@ -71,139 +71,116 @@ const ThemeLamp = ({ isDark, onClick }: { isDark: boolean; onClick: () => void }
   );
 };
 
-const DeskScene = () => (
-  <svg
-    viewBox="0 0 700 460"
-    className="w-full h-auto"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    {/* ---- Monitor: outer bezel ---- */}
-    <rect x="90" y="25" width="520" height="320" rx="10" fill="#1e1b2e" />
+const DeskScene = () => {
+  // Code bars: 13 rows (lines 32-44) with varied widths & muted syntax-like colors
+  const codeBars = [
+    { w: 130, c: '#6e6a7d' },
+    { w: 175, c: '#6e6a7d' },
+    { w: 95, c: '#9088a2' },
+    { w: 75, c: '#6e6a7d' },
+    { w: 115, c: '#6e6a7d' },
+    { w: 160, c: '#a89cc8' },
+    { w: 205, c: '#7d788e' },
+    { w: 140, c: '#9088a2' },
+    { w: 70, c: '#6e6a7d' },
+    { w: 120, c: '#7d788e' },
+    { w: 185, c: '#b3a5a5' },
+    { w: 150, c: '#7d788e' },
+    { w: 85, c: '#6e6a7d' },
+  ];
 
-    {/* ---- Screen (split panels + title bar) ---- */}
-    {/* Title bar */}
-    <rect x="102" y="37" width="496" height="24" fill="#c4b5fd" />
-    <circle cx="120" cy="49" r="5" fill="#ef4444" />
-    <circle cx="136" cy="49" r="5" fill="#f59e0b" />
-    <circle cx="152" cy="49" r="5" fill="#10b981" />
+  return (
+    <svg
+      viewBox="0 0 700 400"
+      className="w-full h-auto"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      {/* ============ MONITOR ============ */}
+      {/* Outer bezel */}
+      <rect x="85" y="25" width="530" height="320" rx="12" fill="var(--desk-chrome)" />
+      {/* Subtle inner shadow line for depth */}
+      <rect x="94" y="34" width="512" height="294" rx="4" fill="var(--desk-highlight)" />
 
-    {/* Left panel — cream design mockup */}
-    <rect x="102" y="61" width="206" height="272" fill="#f7f2ff" />
+      {/* Inner screen frame */}
+      <rect x="97" y="37" width="506" height="288" rx="2" fill="var(--desk-screen-frame)" />
 
-    {/* Salmon header lines */}
-    <rect x="122" y="84" width="58" height="5" rx="2" fill="#fb7185" />
-    <rect x="122" y="95" width="118" height="5" rx="2" fill="#fb7185" />
-    <rect x="122" y="106" width="84" height="5" rx="2" fill="#fb7185" />
+      {/* Title bar */}
+      <rect x="97" y="37" width="506" height="22" fill="#b9c1dc" />
+      <circle cx="117" cy="48" r="5" fill="#ef4444" />
+      <circle cx="132" cy="48" r="5" fill="#f59e0b" />
+      <circle cx="147" cy="48" r="5" fill="#10b981" />
 
-    {/* Pink photo card */}
-    <rect x="122" y="128" width="166" height="72" rx="6" fill="#fbcfe8" />
-    <circle cx="144" cy="162" r="13" fill="#f9a8d4" />
-    <rect x="164" y="154" width="106" height="4" rx="2" fill="#f9a8d4" />
-    <rect x="164" y="164" width="74" height="4" rx="2" fill="#f9a8d4" />
-    <rect x="130" y="180" width="148" height="3" rx="1.5" fill="#f9a8d4" opacity="0.7" />
-    <rect x="130" y="188" width="106" height="3" rx="1.5" fill="#f9a8d4" opacity="0.7" />
+      {/* ---- Left panel: design mockup ---- */}
+      <rect x="97" y="59" width="200" height="266" fill="#f0e8e0" />
 
-    {/* Purple-blue card */}
-    <rect x="122" y="212" width="166" height="92" rx="6" fill="#c7d2fe" />
-    <rect x="134" y="226" width="88" height="4" rx="2" fill="#6366f1" />
-    <rect x="134" y="238" width="138" height="3" rx="1.5" fill="#6366f1" opacity="0.7" />
-    <rect x="134" y="248" width="110" height="3" rx="1.5" fill="#6366f1" opacity="0.7" />
-    <rect x="134" y="258" width="126" height="3" rx="1.5" fill="#6366f1" opacity="0.7" />
-    <rect x="134" y="286" width="78" height="10" rx="5" fill="#6366f1" />
+      {/* Scrollbar (vertical, lavender, on right side of left panel) */}
+      <rect x="286" y="75" width="5" height="85" rx="2.5" fill="#c4b5fd" />
 
-    {/* Right panel — dark code view */}
-    <rect x="308" y="61" width="290" height="272" fill="#3b364a" />
+      {/* 3 salmon header lines */}
+      <rect x="115" y="82" width="62" height="5" rx="2" fill="#d97878" />
+      <rect x="115" y="93" width="116" height="5" rx="2" fill="#d97878" />
+      <rect x="115" y="104" width="82" height="5" rx="2" fill="#d97878" />
 
-    {/* Line numbers */}
-    {[32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44].map((num, i) => (
-      <text
-        key={num}
-        x="322"
-        y={87 + i * 19}
-        fontSize="11"
-        fontFamily="ui-monospace, Menlo, monospace"
-        fill="#7b7592"
-        fontWeight="500"
-      >
-        {num}
-      </text>
-    ))}
+      {/* Pink photo/profile card */}
+      <rect x="115" y="124" width="164" height="78" rx="5" fill="#ecc5c5" />
+      <circle cx="138" cy="158" r="13" fill="#d9a0a0" />
+      <rect x="158" y="151" width="104" height="4" rx="2" fill="#d9a0a0" />
+      <rect x="158" y="161" width="76" height="4" rx="2" fill="#d9a0a0" />
+      <rect x="125" y="178" width="144" height="3" rx="1.5" fill="#d9a0a0" opacity="0.6" />
+      <rect x="125" y="186" width="108" height="3" rx="1.5" fill="#d9a0a0" opacity="0.6" />
 
-    {/* Code bars */}
-    {[
-      { w: 95, c: '#8b8299' },
-      { w: 145, c: '#8b8299' },
-      { w: 70, c: '#b1a5c7' },
-      { w: 175, c: '#8b8299' },
-      { w: 110, c: '#8b8299' },
-      { w: 155, c: '#b1a5c7' },
-      { w: 85, c: '#8b8299' },
-      { w: 195, c: '#8b8299' },
-      { w: 105, c: '#8b8299' },
-      { w: 150, c: '#b1a5c7' },
-      { w: 75, c: '#8b8299' },
-      { w: 165, c: '#8b8299' },
-      { w: 120, c: '#8b8299' },
-    ].map((bar, i) => (
-      <rect
-        key={i}
-        x="350"
-        y={82 + i * 19}
-        width={bar.w}
-        height="7"
-        rx="2"
-        fill={bar.c}
-      />
-    ))}
+      {/* Purple-blue card */}
+      <rect x="115" y="212" width="164" height="100" rx="5" fill="#b8bdd9" />
+      <rect x="128" y="224" width="92" height="4" rx="2" fill="#7077a6" />
+      <rect x="128" y="236" width="132" height="3" rx="1.5" fill="#7077a6" opacity="0.7" />
+      <rect x="128" y="246" width="108" height="3" rx="1.5" fill="#7077a6" opacity="0.7" />
+      <rect x="128" y="256" width="124" height="3" rx="1.5" fill="#7077a6" opacity="0.7" />
+      <rect x="128" y="266" width="98" height="3" rx="1.5" fill="#7077a6" opacity="0.7" />
+      <rect x="128" y="292" width="76" height="10" rx="5" fill="#7077a6" />
 
-    {/* ---- Monitor stand ---- */}
-    <rect x="335" y="345" width="30" height="24" fill="#d1d5db" />
-    <polygon points="285,378 415,378 405,368 295,368" fill="#d1d5db" />
-    <rect x="270" y="378" width="160" height="7" rx="3" fill="#9ca3af" />
-    {/* Camera dot */}
-    <circle cx="350" cy="338" r="3.5" fill="#1e1b2e" />
+      {/* ---- Right panel: code view ---- */}
+      <rect x="297" y="59" width="306" height="266" fill="#3b364a" />
 
-    {/* ---- Desk surface ---- */}
-    <rect x="0" y="395" width="700" height="9" fill="#1e1b2e" />
-    <rect x="0" y="404" width="700" height="3" fill="#3b364a" />
+      {/* Line numbers */}
+      {[32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44].map((num, i) => (
+        <text
+          key={num}
+          x="313"
+          y={82 + i * 19}
+          fontSize="11"
+          fontFamily="ui-monospace, Menlo, monospace"
+          fill="#756f86"
+          fontWeight="500"
+        >
+          {num}
+        </text>
+      ))}
 
-    {/* ---- Coffee mug ---- */}
-    {/* Body (trapezoid) */}
-    <path
-      d="M 170 368 L 175 395 L 220 395 L 225 368 Z"
-      fill="#f472b6"
-      stroke="#1e1b2e"
-      strokeWidth="2.5"
-    />
-    {/* Top rim */}
-    <ellipse cx="197.5" cy="368" rx="27.5" ry="4.5" fill="#ec4899" stroke="#1e1b2e" strokeWidth="2.5" />
-    <ellipse cx="197.5" cy="368" rx="22" ry="2.5" fill="#9d174d" />
-    {/* Handle */}
-    <path
-      d="M 225 378 Q 245 381 245 388 Q 245 396 225 394"
-      fill="none"
-      stroke="#1e1b2e"
-      strokeWidth="2.5"
-    />
-    {/* Steam */}
-    <path
-      d="M 185 358 Q 188 348, 182 341 Q 180 333, 188 325"
-      stroke="#9ca3af"
-      strokeWidth="2"
-      fill="none"
-      strokeLinecap="round"
-      opacity="0.5"
-    />
-    <path
-      d="M 205 358 Q 208 348, 202 341 Q 200 333, 208 325"
-      stroke="#9ca3af"
-      strokeWidth="2"
-      fill="none"
-      strokeLinecap="round"
-      opacity="0.5"
-    />
-  </svg>
-);
+      {/* Code bars with varied widths and muted syntax colors */}
+      {codeBars.map((bar, i) => (
+        <rect
+          key={i}
+          x="338"
+          y={77 + i * 19}
+          width={bar.w}
+          height="7"
+          rx="2"
+          fill={bar.c}
+        />
+      ))}
+
+      {/* ============ STAND ============ */}
+      {/* Camera dot on the monitor chin */}
+      <circle cx="350" cy="335" r="3" fill="var(--desk-camera)" />
+      {/* Thin trapezoidal neck */}
+      <polygon points="344,345 356,345 359,360 341,360" fill="var(--desk-stand)" />
+      {/* Slim base */}
+      <rect x="322" y="360" width="56" height="6" rx="2" fill="var(--desk-stand)" />
+      <rect x="322" y="366" width="56" height="2" fill="var(--desk-stand-shadow)" />
+
+    </svg>
+  );
+};
 
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);

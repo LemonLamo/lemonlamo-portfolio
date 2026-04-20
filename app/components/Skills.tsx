@@ -18,19 +18,14 @@ import {
   SiExpress,
   SiOracle,
   SiPhp,
-  SiC,
   SiLinux,
-  SiBootstrap,
   SiFigma,
   SiRabbitmq,
-  SiPostman,
   SiTailwindcss,
   SiRedis,
   SiPostgresql,
-  SiGraphql,
   SiSpringboot,
   SiFirebase,
-  SiVuedotjs,
 } from 'react-icons/si';
 import { FaJava } from 'react-icons/fa';
 

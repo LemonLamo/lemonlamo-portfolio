@@ -3,19 +3,19 @@
 import { useEffect, useState } from 'react';
 
 export default function ThemeToggle() {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(true);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    // Check for saved theme preference, default to light
+    // Check for saved theme preference, default to dark
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-      setIsDark(true);
-      document.documentElement.classList.add('dark');
-    } else {
+    if (savedTheme === 'light') {
       setIsDark(false);
       document.documentElement.classList.remove('dark');
+    } else {
+      setIsDark(true);
+      document.documentElement.classList.add('dark');
     }
 
     // Listen for theme changes from other components (lamp)
