@@ -9,14 +9,14 @@
   --accent-dark: #ff7a6a;
   
   /* Text colors */
-  --text-primary: #1a1a1a;
-  --text-secondary: #525252;
-  --text-tertiary: #737373;
+  --text-primary: #0a0a0a;
+  --text-secondary: #27272a;
+  --text-tertiary: #404046;
   
-  /* Accent colors - elegant purple and salmon pink theme */
-  --accent-purple: #9f7aea;
-  --accent-pink: #ff8a7a;
-  --accent-yellow: #fbbf24;
+  /* Accent colors - softer pastel violet + darker salmon pink */
+  --accent-purple: #8b5cf6;
+  --accent-pink: #c85f5f;
+  --accent-yellow: #b45309;
   
   /* Card colors */
   --card-bg: rgba(255, 255, 255, 0.7);
@@ -42,6 +42,18 @@
   /* Two-tone hero background */
   --hero-bg-left: #ede9fe;
   --hero-bg-right: #ffe4e1;
+
+  /* Ink + solid card fill for chunky-card treatment */
+  --ink: #1a1a1a;
+  --card-bg-solid: #fffdf9;
+
+  /* Subtle per-section backgrounds (light mode) — very light hints of hue */
+  --bg-about:    #f5f3ff;  /* whisper lavender */
+  --bg-skills:   #fffdf5;  /* whisper cream */
+  --bg-projects: #fff7ed;  /* whisper peach */
+  --bg-services: #edf4fd;  /* whisper sky */
+  --bg-education: #fff7ed; /* whisper pink */
+  --bg-contact:  #dde9fa;  /* beige */
 }
 
 .dark {
@@ -53,14 +65,14 @@
   --accent-dark: #ff8a7a;
   
   /* Text colors */
-  --text-primary: #fafafa;
-  --text-secondary: #d4d4d4;
-  --text-tertiary: #a3a3a3;
+  --text-primary: #ffffff;
+  --text-secondary: #e4e4e7;
+  --text-tertiary: #b4b4b8;
   
-  /* Accent colors - elegant purple and salmon pink theme */
+  /* Accent colors - pastel violet + darker salmon pink (lifted for dark bg) */
   --accent-purple: #b794f6;
-  --accent-pink: #ffa599;
-  --accent-yellow: #fcd34d;
+  --accent-pink: #ea8b7f;
+  --accent-yellow: #fbbf24;
   
   /* Card colors */
   --card-bg: rgba(30, 30, 30, 0.6);
@@ -86,6 +98,18 @@
   /* Two-tone hero background */
   --hero-bg-left: #1a1a1a;
   --hero-bg-right: #262626;
+
+  /* Ink + solid card fill for chunky-card treatment */
+  --ink: #fafafa;
+  --card-bg-solid: #202022;
+
+  /* Subtle per-section backgrounds (dark mode) — varying shades of neutral grey, at most a greyish purple hint */
+  --bg-about:    #2c2837;  /* grey with faint purple */
+  --bg-skills:   #262628;  /* neutral dark grey */
+  --bg-projects: #2b2b2d;  /* neutral medium grey */
+  --bg-services: #252530;  /* grey with faint purple */
+  --bg-education: #29292b; /* neutral grey */
+  --bg-contact:  #27242e; /* greyish purple */
 }
 
 @theme inline {
@@ -95,7 +119,68 @@
   --color-accent-dark: var(--accent-dark);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-display);
 }
+
+/* --- Editorial display type --- */
+.display {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 600;
+  font-variation-settings: "SOFT" 80, "WONK" 1, "opsz" 144;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+/* Outline-stroke trick: paints the glyph edge only, leaves the middle hollow */
+.outlined {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--text-primary);
+  paint-order: stroke fill;
+}
+
+/* --- Chunky sticker-card treatment --- */
+.chunky-card {
+  background-color: var(--card-bg-solid);
+  border: 2px solid var(--ink);
+  border-radius: 1rem;
+  box-shadow: 6px 6px 0 var(--ink);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.chunky-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0 var(--ink);
+}
+
+/* --- Subtle tag chips --- */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.65rem;
+  font-family: var(--font-geist-sans), sans-serif;
+  font-weight: 600;
+  font-size: 0.7rem;
+  letter-spacing: 0.01em;
+  color: var(--tag-text, var(--text-secondary));
+  background: var(--tag-bg, transparent);
+  border: 1px solid var(--tag-border, var(--card-border));
+  border-radius: 0.4rem;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.tag-purple { --tag-text: #6d28d9; --tag-bg: rgba(196, 181, 253, 0.18); --tag-border: rgba(139, 92, 246, 0.35); }
+.tag-pink   { --tag-text: #be185d; --tag-bg: rgba(251, 207, 232, 0.22); --tag-border: rgba(236, 72, 153, 0.35); }
+.tag-yellow { --tag-text: #92400e; --tag-bg: rgba(253, 230, 138, 0.28); --tag-border: rgba(217, 119, 6, 0.32); }
+.tag-green  { --tag-text: #047857; --tag-bg: rgba(187, 247, 208, 0.28); --tag-border: rgba(16, 185, 129, 0.32); }
+.tag-blue   { --tag-text: #1d4ed8; --tag-bg: rgba(191, 219, 254, 0.28); --tag-border: rgba(59, 130, 246, 0.32); }
+.tag-peach  { --tag-text: #9a3412; --tag-bg: rgba(254, 215, 170, 0.3); --tag-border: rgba(234, 88, 12, 0.32); }
+
+.dark .tag-purple { --tag-text: #e9d5ff; --tag-bg: rgba(139, 92, 246, 0.18); --tag-border: rgba(196, 181, 253, 0.3); }
+.dark .tag-pink   { --tag-text: #fbcfe8; --tag-bg: rgba(236, 72, 153, 0.15); --tag-border: rgba(251, 207, 232, 0.3); }
+.dark .tag-yellow { --tag-text: #fde68a; --tag-bg: rgba(217, 119, 6, 0.18); --tag-border: rgba(253, 230, 138, 0.3); }
+.dark .tag-green  { --tag-text: #bbf7d0; --tag-bg: rgba(16, 185, 129, 0.15); --tag-border: rgba(187, 247, 208, 0.3); }
+.dark .tag-blue   { --tag-text: #bfdbfe; --tag-bg: rgba(59, 130, 246, 0.15); --tag-border: rgba(191, 219, 254, 0.3); }
+.dark .tag-peach  { --tag-text: #fed7aa; --tag-bg: rgba(234, 88, 12, 0.15); --tag-border: rgba(254, 215, 170, 0.3); }
 
 body {
   background-color: var(--background);

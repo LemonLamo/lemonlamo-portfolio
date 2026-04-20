@@ -60,14 +60,14 @@ export default function AnimatedBackground() {
         >
           {i % 3 === 0 ? (
             // Circle
-            <div className="w-full h-full rounded-full bg-gradient-to-br from-[#ff7b6c]/10 to-[#a78bfa]/10 blur-xl" />
+            <div className="w-full h-full rounded-full bg-[#a78bfa]/10 blur-xl" />
           ) : i % 3 === 1 ? (
             // Square
-            <div className="w-full h-full rotate-45 bg-gradient-to-br from-[#a78bfa]/10 to-[#ff7b6c]/10 blur-xl" />
+            <div className="w-full h-full rotate-45 bg-[#ff7b6c]/10 blur-xl" />
           ) : (
             // Triangle
             <div
-              className="w-full h-full bg-gradient-to-br from-[#ff7b6c]/10 to-[#a78bfa]/10 blur-xl"
+              className="w-full h-full bg-[#a78bfa]/10 blur-xl"
               style={{
                 clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
               }}

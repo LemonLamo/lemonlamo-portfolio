@@ -59,9 +59,9 @@ export default function CursorTrail() {
           }}
           className="absolute w-3 h-3 -translate-x-1/2 -translate-y-1/2 rounded-full"
           style={{
-            background: i % 2 === 0 
-              ? 'radial-gradient(circle, rgba(255, 123, 108, 0.4) 0%, transparent 70%)'
-              : 'radial-gradient(circle, rgba(167, 139, 250, 0.4) 0%, transparent 70%)',
+            backgroundColor: i % 2 === 0
+              ? 'rgba(255, 123, 108, 0.3)'
+              : 'rgba(167, 139, 250, 0.3)',
             width: `${12 - i}px`,
             height: `${12 - i}px`,
           }}

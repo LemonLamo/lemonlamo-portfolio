@@ -98,16 +98,17 @@ export default function Skills() {
     <section
       ref={sectionRef}
       id="skills"
-      className="py-16 px-6 apple-grid relative overflow-hidden"
+      className="py-20 px-6 relative overflow-hidden"
+      style={{ backgroundColor: 'var(--bg-skills)' }}
     >
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="mb-12 text-center">
           <h2
             ref={titleRef}
-            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3"
+            className="display text-5xl sm:text-6xl md:text-7xl mb-3"
             style={{ color: 'var(--text-primary)' }}
           >
-            Technical <span style={{ color: 'var(--accent-pink)' }}>Skills</span>
+            Technical <span className="italic" style={{ color: 'var(--accent-pink)' }}>Skills</span>
           </h2>
           <div className="w-20 h-1 mx-auto rounded-full" style={{ backgroundColor: 'var(--accent-purple)' }} />
           <p className="text-base sm:text-lg mt-4 px-4"
@@ -117,28 +118,24 @@ export default function Skills() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6">
+        <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
           {skillCategories.map((category, index) => (
             <div
               key={category.title}
               ref={(el) => {
                 cardsRef.current[index] = el;
               }}
-              className="group rounded-2xl hover:scale-[1.02] hover:shadow-xl transition-all duration-500 overflow-hidden"
-              style={{
-                backgroundColor: 'var(--card-bg)',
-                border: '2px solid',
-                borderColor: index % 2 === 0 ? 'var(--accent-purple)' : 'var(--accent-pink)'
-              }}
+              className="chunky-card group overflow-hidden w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] xl:w-[calc(20%-1.2rem)]"
             >
               {/* Soft header like projects */}
-              <div className="flex items-center gap-2 px-4 py-3 border-b" style={{ 
+              <div className="flex items-center gap-2 px-4 py-3 border-b" style={{
                 backgroundColor: index % 2 === 0 ? 'rgba(196, 181, 253, 0.1)' : 'rgba(251, 207, 232, 0.1)',
                 borderBottomColor: 'var(--card-border)'
               }}>
                 <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: '#c4b5fd' }} />
                 <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: '#f9a8d4' }} />
                 <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: '#e9d5ff' }} />
+                <div className="ml-auto display italic text-xl leading-none" style={{ color: index % 2 === 0 ? 'var(--accent-purple)' : 'var(--accent-pink)' }}>{String(index + 1).padStart(2, '0')}</div>
               </div>
               
               <div className="relative z-10 p-4 sm:p-6">
@@ -167,22 +164,22 @@ export default function Skills() {
                       >
                         <div className="relative shrink-0">
                           <div
-                            className="w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 group-hover/item:scale-110 border-2"
+                            className="w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-300 group-hover/item:scale-110"
                             style={{
-                              backgroundColor: `${skill.color}15`,
-                              borderColor: `${skill.color}40`,
+                              backgroundColor: `${skill.color}26`,
+                              border: `2px solid ${skill.color}`,
                             }}
                           >
                             <Icon
-                              className="w-5 h-5 transition-all duration-300"
+                              className="w-6 h-6 transition-all duration-300"
                               style={{
                                 color: isNextOrExpress ? 'var(--icon-nextjs-express)' : skill.color,
                               }}
                             />
                           </div>
                         </div>
-                        <span className="font-semibold text-sm transition-all" style={{ 
-                          color: 'var(--text-primary)' 
+                        <span className="font-semibold text-sm transition-all" style={{
+                          color: 'var(--text-primary)'
                         }}>
                           {skill.name}
                         </span>

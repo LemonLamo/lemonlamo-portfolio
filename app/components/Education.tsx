@@ -34,16 +34,17 @@ export default function Education() {
     <section
       ref={sectionRef}
       id="education"
-      className="py-16 px-6 apple-grid relative overflow-hidden"
+      className="py-20 px-6 relative overflow-hidden"
+      style={{ backgroundColor: 'var(--bg-education)' }}
     >
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="mb-12 text-center">
           <h2
             ref={titleRef}
-            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3"
+            className="display text-5xl sm:text-6xl md:text-7xl mb-3"
             style={{ color: 'var(--text-primary)' }}
           >
-            Education <span style={{ color: 'var(--accent-purple)' }}>Journey</span>
+            Education <span className="italic" style={{ color: 'var(--accent-purple)' }}>Journey</span>
           </h2>
           <div className="w-20 h-1 mx-auto rounded-full" style={{ backgroundColor: 'var(--accent-pink)' }} />
           <p className="text-base sm:text-lg mt-4 px-4"
@@ -56,10 +57,10 @@ export default function Education() {
         {/* Timeline Container */}
         <div className="relative max-w-4xl mx-auto">
           {/* Timeline Line */}
-          <div 
+          <div
             className="absolute left-8 top-0 bottom-0 w-0.5"
-            style={{ 
-              background: 'linear-gradient(to bottom, var(--accent-purple), var(--accent-pink))'
+            style={{
+              backgroundColor: 'var(--accent-purple)'
             }}
           />
 
@@ -84,13 +85,7 @@ export default function Education() {
                   >
                     {item.degree}
                   </h3>
-                  <span 
-                    className="text-xs font-semibold px-2.5 py-1 rounded-full self-start sm:self-center whitespace-nowrap"
-                    style={{
-                      backgroundColor: index % 2 === 0 ? 'rgba(139, 92, 246, 0.15)' : 'rgba(236, 72, 153, 0.15)',
-                      color: index % 2 === 0 ? 'var(--accent-purple)' : 'var(--accent-pink)',
-                    }}
-                  >
+                  <span className={`tag self-start sm:self-center whitespace-nowrap ${index % 2 === 0 ? 'tag-purple' : 'tag-pink'}`}>
                     {item.status}
                   </span>
                 </div>

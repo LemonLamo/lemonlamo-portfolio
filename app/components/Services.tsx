@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 
 const services = [
   {
@@ -100,22 +100,21 @@ const services = [
 export default function Services() {
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
   return (
     <section
       ref={sectionRef}
       id="services"
-      className="py-16 px-6 apple-grid relative overflow-hidden"
+      className="py-20 px-6 relative overflow-hidden"
+      style={{ backgroundColor: 'var(--bg-services)' }}
     >
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="mb-12 text-center">
           <h2
             ref={titleRef}
-            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3"
+            className="display text-5xl sm:text-6xl md:text-7xl mb-3"
             style={{ color: 'var(--text-primary)' }}
           >
-            Services I <span style={{ color: 'var(--accent-purple)' }}>Offer</span>
+            <span className="italic" style={{ color: 'var(--accent-purple)' }}>Services</span> I <span className="italic" style={{ color: 'var(--accent-pink)' }}>Offer</span>
           </h2>
           <div className="w-20 h-1 mx-auto rounded-full" style={{ backgroundColor: 'var(--accent-pink)' }} />
         <p className="text-base sm:text-lg mt-4 px-4" style={{ color: 'var(--text-secondary)' }}>
@@ -127,23 +126,17 @@ export default function Services() {
           {services.slice(0, 4).map((service, index) => (
             <div
               key={service.title}
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-              className={`group rounded-2xl hover:scale-[1.02] hover:shadow-xl transition-all duration-500 overflow-hidden ${hoveredIndex === index ? 'shadow-xl' : ''}`}
-              style={{
-                backgroundColor: 'var(--card-bg)',
-                border: '2px solid',
-                borderColor: index % 2 === 0 ? 'var(--accent-purple)' : 'var(--accent-pink)'
-              }}
+              className="chunky-card group overflow-hidden"
             >
               {/* Header with dots */}
-              <div className="flex items-center gap-2 px-4 py-3 border-b" style={{ 
+              <div className="flex items-center gap-2 px-4 py-3 border-b" style={{
                 backgroundColor: index % 2 === 0 ? 'rgba(196, 181, 253, 0.1)' : 'rgba(251, 207, 232, 0.1)',
                 borderBottomColor: 'var(--card-border)'
               }}>
                 <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: '#c4b5fd' }} />
                 <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: '#f9a8d4' }} />
                 <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: '#e9d5ff' }} />
+                <div className="ml-auto display italic text-xl leading-none" style={{ color: index % 2 === 0 ? 'var(--accent-purple)' : 'var(--accent-pink)' }}>{String(index + 1).padStart(2, '0')}</div>
               </div>
 
               <div className="p-5">
@@ -192,24 +185,16 @@ export default function Services() {
 
         {/* 5th Service - Centered on larger screens */}
         <div className="mt-6 flex justify-center">
-          <div
-            onMouseEnter={() => setHoveredIndex(4)}
-            onMouseLeave={() => setHoveredIndex(null)}
-            className={`group rounded-2xl hover:scale-[1.02] hover:shadow-xl transition-all duration-500 overflow-hidden w-full md:w-1/2 ${hoveredIndex === 4 ? 'shadow-xl' : ''}`}
-            style={{
-              backgroundColor: 'var(--card-bg)',
-              border: '2px solid',
-              borderColor: 'var(--accent-purple)'
-            }}
-          >
+          <div className="chunky-card group overflow-hidden w-full md:w-1/2">
             {/* Header with dots */}
-            <div className="flex items-center gap-2 px-4 py-3 border-b" style={{ 
+            <div className="flex items-center gap-2 px-4 py-3 border-b" style={{
               backgroundColor: 'rgba(196, 181, 253, 0.1)',
               borderBottomColor: 'var(--card-border)'
             }}>
               <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: '#c4b5fd' }} />
               <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: '#f9a8d4' }} />
               <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: '#e9d5ff' }} />
+              <div className="ml-auto display italic text-xl leading-none" style={{ color: 'var(--accent-purple)' }}>05</div>
             </div>
 
             <div className="p-5">

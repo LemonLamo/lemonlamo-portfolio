@@ -2,32 +2,20 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative apple-grid py-16 px-6 overflow-hidden border-t border-[#ff7b6c]/20">
-      {/* Subtle glow */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-[#ff7b6c]/50 to-transparent" />
-      
+    <footer className="relative py-16 px-6 overflow-hidden border-t"
+      style={{ backgroundColor: 'var(--card-bg-solid)', borderTopColor: 'var(--card-border)' }}>
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           {/* Left: Brand */}
           <div className="space-y-4">
-            <h3 className="text-2xl font-bold gradient-text">
+            <h3 className="display italic text-3xl" style={{ color: 'var(--accent-purple)', fontVariationSettings: '"SOFT" 100, "WONK" 1, "opsz" 144' }}>
               Lamia Koucem
             </h3>
             <p className="text-sm leading-relaxed"
               style={{ color: 'var(--text-tertiary)' }}
             >
-              Software Engineering Student
-              <br />
-              @ USTHB
+              Freelance Software Engineer — building web, mobile, and cloud solutions from concept to deployment.
             </p>
-            <div className="flex gap-2 flex-wrap">
-              <span className="px-4 py-1.5 glass-effect rounded-full text-[#ff7b6c] text-xs font-semibold">
-                Full Stack Developer
-              </span>
-              <span className="px-4 py-1.5 glass-effect rounded-full text-[#a78bfa] text-xs font-semibold">
-                Available
-              </span>
-            </div>
           </div>
 
           {/* Middle: Quick Links */}
@@ -42,10 +30,10 @@ export default function Footer() {
                 <li key={item}>
                   <a
                     href={`#${item.toLowerCase()}`}
-                    className="hover:text-[#ff7b6c] transition-colors duration-300 text-sm flex items-center gap-2 group"
+                    className="hover:text-(--accent-pink) transition-colors duration-300 text-sm flex items-center gap-2 group"
                     style={{ color: 'var(--text-tertiary)' }}
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#ff7b6c] opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-(--accent-pink) opacity-0 group-hover:opacity-100 transition-opacity" />
                     <span>{item}</span>
                   </a>
                 </li>
@@ -65,7 +53,7 @@ export default function Footer() {
                 href="https://github.com/LemonLamo"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 hover:text-[#ff7b6c] transition-colors duration-300 group"
+                className="flex items-center gap-3 hover:text-(--accent-pink) transition-colors duration-300 group"
                 style={{ color: 'var(--text-tertiary)' }}
               >
                 <div className="w-10 h-10 glass-effect rounded-xl flex items-center justify-center group-hover:scale-110 transition-all duration-300">
@@ -79,7 +67,7 @@ export default function Footer() {
                 href="https://www.linkedin.com/in/lamia-koucem-1a4447260/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 hover:text-[#a78bfa] transition-colors duration-300 group"
+                className="flex items-center gap-3 hover:text-(--accent-purple) transition-colors duration-300 group"
                 style={{ color: 'var(--text-tertiary)' }}
               >
                 <div className="w-10 h-10 glass-effect rounded-xl flex items-center justify-center group-hover:scale-110 transition-all duration-300">
@@ -91,7 +79,7 @@ export default function Footer() {
               </a>
               <a
                 href="mailto:lamia.koucem@gmail.com"
-                className="flex items-center gap-3 hover:text-[#ff7b6c] transition-colors duration-300 group"
+                className="flex items-center gap-3 hover:text-(--accent-pink) transition-colors duration-300 group"
                 style={{ color: 'var(--text-tertiary)' }}
               >
                 <div className="w-10 h-10 glass-effect rounded-xl flex items-center justify-center group-hover:scale-110 transition-all duration-300">
@@ -106,7 +94,7 @@ export default function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="h-px bg-linear-to-r from-transparent via-[#ff7b6c]/30 to-transparent mb-8" />
+        <div className="h-px mb-8" style={{ backgroundColor: 'var(--card-border)' }} />
 
         {/* Bottom */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
@@ -116,11 +104,11 @@ export default function Footer() {
           <div className="flex items-center gap-3 text-gray-600 dark:text-gray-400">
             <span>Built with</span>
             <div className="flex items-center gap-2">
-              <span className="text-[#ff7b6c] font-semibold hover:scale-110 inline-block transition-transform cursor-default">Next.js</span>
+              <span className="text-(--accent-pink) font-semibold hover:scale-110 inline-block transition-transform cursor-default">Next.js</span>
               <span className="animate-pulse">•</span>
-              <span className="text-[#a78bfa] font-semibold hover:scale-110 inline-block transition-transform cursor-default">GSAP</span>
+              <span className="text-(--accent-purple) font-semibold hover:scale-110 inline-block transition-transform cursor-default">GSAP</span>
               <span className="animate-pulse">•</span>
-              <span className="text-[#ff7b6c] font-semibold hover:scale-110 inline-block transition-transform cursor-default">Tailwind</span>
+              <span className="text-(--accent-pink) font-semibold hover:scale-110 inline-block transition-transform cursor-default">Tailwind</span>
             </div>
           </div>
         </div>

@@ -35,12 +35,8 @@ export default function Navbar() {
   ];
 
   return (
-    <nav 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'border-b' 
-          : 'border-b border-transparent'
-      }`}
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${isScrolled ? 'backdrop-blur-md' : ''}`}
       style={{
         backgroundColor: isScrolled ? 'var(--navbar-bg)' : 'transparent',
         borderBottomColor: isScrolled ? 'var(--navbar-border)' : 'transparent',
@@ -48,9 +44,9 @@ export default function Navbar() {
     >
       {/* Scroll progress bar */}
       <div className="absolute bottom-0 left-0 h-0.5 transition-all duration-300"
-        style={{ 
+        style={{
           width: `${scrollProgress}%`,
-          background: 'linear-gradient(to right, var(--accent-pink), var(--accent-purple), var(--accent-pink))'
+          backgroundColor: 'var(--accent-purple)'
         }}
       />
       <div className="max-w-7xl mx-auto px-6 py-4 relative">
@@ -59,7 +55,7 @@ export default function Navbar() {
             onClick={() => scrollToSection('home')}
             className="flex items-center gap-2 text-xl group relative"
           >
-            <span className="font-bold" style={{ color: 'var(--accent-purple)' }}>&lt;LK/&gt;</span>
+            <span className="display italic text-3xl" style={{ color: 'var(--accent-purple)', fontVariationSettings: '"SOFT" 100, "WONK" 1, "opsz" 144' }}>lamia</span>
           </button>
 
           {/* Desktop Menu */}
@@ -115,11 +111,11 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden absolute right-4 top-full mt-2 w-64 rounded-3xl p-6 shadow-2xl animate-slideDown"
+          <div className="md:hidden absolute right-4 top-full mt-2 w-64 rounded-2xl p-6 animate-slideDown"
             style={{
-              backgroundColor: 'var(--navbar-bg)',
-              borderColor: 'var(--navbar-border)',
-              borderWidth: '1px',
+              backgroundColor: 'var(--card-bg-solid)',
+              border: '2px solid var(--ink)',
+              boxShadow: '4px 4px 0 var(--ink)',
             }}
           >
             <div className="flex flex-col space-y-3">
@@ -135,9 +131,9 @@ export default function Navbar() {
                   {item.name}
                 </button>
               ))}
-              <div className="pt-3 mt-2 flex items-center justify-between px-4 py-2"
+              <div className="pt-4 mt-3 flex items-center justify-between px-4 py-2"
                 style={{
-                  borderTop: '1px solid var(--navbar-border)',
+                  borderTop: '2px solid var(--ink)',
                 }}
               >
                 <span className="text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>Theme</span>
